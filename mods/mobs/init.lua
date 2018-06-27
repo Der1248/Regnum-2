@@ -1,0 +1,6 @@
+local path = minetest.get_modpath("mobs")
+dofile(path.."/api.lua")
+dofile(path.."/egg.lua")
+dofile(path.."/knight.lua")
+dofile(path.."/monsterx1.lua")
+dofile(path.."/knight2.lua")
