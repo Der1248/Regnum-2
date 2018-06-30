@@ -440,7 +440,7 @@ minetest.register_node("default:dirt_with_snow", {
 	tiles = {"default_snow.png", "default_dirt.png",
 		{name = "default_dirt.png^default_snow_side.png",
 			tileable_vertical = false}},
-	groups = {crumbly = 3, soil = 1, spreading_dirt_type = 1, snowy = 1},
+	groups = {crumbly = 3, spreading_dirt_type = 1, snowy = 1},
 	drop = 'default:dirt',
 	sounds = default.node_sound_dirt_defaults({
 		footstep = {name = "default_snow_footstep", gain = 0.15},
@@ -608,7 +608,7 @@ minetest.register_node("default:sapling", {
 	sounds = default.node_sound_leaves_defaults(),
 
 	on_construct = function(pos)
-		minetest.get_node_timer(pos):start(math.random(300, 1500))
+		minetest.get_node_timer(pos):start(math.random(2400,4800))
 	end,
 
 	on_place = function(itemstack, placer, pointed_thing)
@@ -673,7 +673,9 @@ minetest.register_node("default:apple", {
 	sounds = default.node_sound_leaves_defaults(),
 
 	after_place_node = function(pos, placer, itemstack)
-		minetest.set_node(pos, {name = "default:apple", param2 = 1})
+		if placer:is_player() then
+			minetest.set_node(pos, {name = "default:apple", param2 = 1})
+		end
 	end,
 })
 
@@ -740,7 +742,7 @@ minetest.register_node("default:junglesapling", {
 	sounds = default.node_sound_leaves_defaults(),
 
 	on_construct = function(pos)
-		minetest.get_node_timer(pos):start(math.random(300, 1500))
+		minetest.get_node_timer(pos):start(math.random(2400,4800))
 	end,
 
 	on_place = function(itemstack, placer, pointed_thing)
@@ -819,7 +821,7 @@ minetest.register_node("default:pine_sapling", {
 	sounds = default.node_sound_leaves_defaults(),
 
 	on_construct = function(pos)
-		minetest.get_node_timer(pos):start(math.random(300, 1500))
+		minetest.get_node_timer(pos):start(math.random(2400,4800))
 	end,
 
 	on_place = function(itemstack, placer, pointed_thing)
@@ -899,7 +901,7 @@ minetest.register_node("default:acacia_sapling", {
 	sounds = default.node_sound_leaves_defaults(),
 
 	on_construct = function(pos)
-		minetest.get_node_timer(pos):start(math.random(300, 1500))
+		minetest.get_node_timer(pos):start(math.random(2400,4800))
 	end,
 
 	on_place = function(itemstack, placer, pointed_thing)
@@ -977,7 +979,7 @@ minetest.register_node("default:aspen_sapling", {
 	sounds = default.node_sound_leaves_defaults(),
 
 	on_construct = function(pos)
-		minetest.get_node_timer(pos):start(math.random(300, 1500))
+		minetest.get_node_timer(pos):start(math.random(2400,4800))
 	end,
 
 	on_place = function(itemstack, placer, pointed_thing)
@@ -1360,7 +1362,7 @@ minetest.register_node("default:bush_sapling", {
 	sounds = default.node_sound_leaves_defaults(),
 
 	on_construct = function(pos)
-		minetest.get_node_timer(pos):start(math.random(300, 1500))
+		minetest.get_node_timer(pos):start(math.random(1200, 2400))
 	end,
 
 	on_place = function(itemstack, placer, pointed_thing)
@@ -1431,7 +1433,7 @@ minetest.register_node("default:acacia_bush_sapling", {
 	sounds = default.node_sound_leaves_defaults(),
 
 	on_construct = function(pos)
-		minetest.get_node_timer(pos):start(math.random(300, 1500))
+		minetest.get_node_timer(pos):start(math.random(1200, 2400))
 	end,
 
 	on_place = function(itemstack, placer, pointed_thing)
@@ -1781,38 +1783,19 @@ local function get_chest_formspec(pos)
 end
 
 local function chest_lid_obstructed(pos)
-	local above = {x = pos.x, y = pos.y + 1, z = pos.z}
+	local above = { x = pos.x, y = pos.y + 1, z = pos.z }
 	local def = minetest.registered_nodes[minetest.get_node(above).name]
 	-- allow ladders, signs, wallmounted things and torches to not obstruct
-	if def and
-			(def.drawtype == "airlike" or
+	if def.drawtype == "airlike" or
 			def.drawtype == "signlike" or
 			def.drawtype == "torchlike" or
-			(def.drawtype == "nodebox" and def.paramtype2 == "wallmounted")) then
+			(def.drawtype == "nodebox" and def.paramtype2 == "wallmounted") then
 		return false
 	end
 	return true
 end
 
 local open_chests = {}
-
-local function chest_lid_close(pn)
-	local pos = open_chests[pn].pos
-	local sound = open_chests[pn].sound
-	local swap = open_chests[pn].swap
-
-	open_chests[pn] = nil
-	for k, v in pairs(open_chests) do
-		if v.pos.x == pos.x and v.pos.y == pos.y and v.pos.z == pos.z then
-			return true
-		end
-	end
-
-	local node = minetest.get_node(pos)
-	minetest.after(0.2, minetest.swap_node, pos, { name = "default:" .. swap,
-			param2 = node.param2 })
-	minetest.sound_play(sound, {gain = 0.3, pos = pos, max_hear_distance = 10})
-end
 
 minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if formname ~= "default:chest" then
@@ -1827,15 +1810,21 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		return
 	end
 
-	chest_lid_close(pn)
-	return true
-end)
+	local pos = open_chests[pn].pos
+	local sound = open_chests[pn].sound
+	local swap = open_chests[pn].swap
+	local node = minetest.get_node(pos)
 
-minetest.register_on_leaveplayer(function(player)
-	local pn = player:get_player_name()
-	if open_chests[pn] then
-		chest_lid_close(pn)
+	open_chests[pn] = nil
+	for k, v in pairs(open_chests) do
+		if v.pos.x == pos.x and v.pos.y == pos.y and v.pos.z == pos.z then
+			return true
+		end
 	end
+	minetest.after(0.2, minetest.swap_node, pos, { name = "default:" .. swap,
+			param2 = node.param2 })
+	minetest.sound_play(sound, {gain = 0.3, pos = pos, max_hear_distance = 10})
+	return true
 end)
 
 function default.register_chest(name, d)
@@ -1971,13 +1960,6 @@ function default.register_chest(name, d)
 			open_chests[clicker:get_player_name()] = { pos = pos,
 					sound = def.sound_close, swap = name }
 		end
-		def.on_blast = function(pos)
-			local drops = {}
-			default.get_inventory_drops(pos, "main", drops)
-			drops[#drops+1] = "default:" .. name
-			minetest.remove_node(pos)
-			return drops
-		end
 	end
 
 	def.on_metadata_inventory_move = function(pos, from_list, from_index,
@@ -1995,28 +1977,27 @@ function default.register_chest(name, d)
 			" takes " .. stack:get_name() ..
 			" from chest at " .. minetest.pos_to_string(pos))
 	end
+	def.on_blast = function(pos)
+		local drops = {}
+		default.get_inventory_drops(pos, "main", drops)
+		drops[#drops+1] = "default:chest"
+		minetest.remove_node(pos)
+		return drops
+	end
 
 	local def_opened = table.copy(def)
 	local def_closed = table.copy(def)
 
 	def_opened.mesh = "chest_open.obj"
-	for i = 1, #def_opened.tiles do
-		if type(def_opened.tiles[i]) == "string" then
-			def_opened.tiles[i] = {name = def_opened.tiles[i], backface_culling = true}
-		elseif def_opened.tiles[i].backface_culling == nil then
-			def_opened.tiles[i].backface_culling = true
-		end
-	end
 	def_opened.drop = "default:" .. name
 	def_opened.groups.not_in_creative_inventory = 1
 	def_opened.selection_box = {
 		type = "fixed",
 		fixed = { -1/2, -1/2, -1/2, 1/2, 3/16, 1/2 },
-	}
+		}
 	def_opened.can_dig = function()
 		return false
 	end
-	def_opened.on_blast = function() end
 
 	def_closed.mesh = nil
 	def_closed.drawtype = nil

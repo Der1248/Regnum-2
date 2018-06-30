@@ -203,7 +203,12 @@ end
 
 local function can_dig_door(pos, digger)
 	replace_old_owner_information(pos)
-	return default.can_interact_with_node(digger, pos)
+	if default.can_interact_with_node(digger, pos) then
+		return true
+	else
+		minetest.record_protection_violation(pos, digger:get_player_name())
+		return false
+	end
 end
 
 function doors.register(name, def)
@@ -261,8 +266,7 @@ function doors.register(name, def)
 			local node = minetest.get_node(pointed_thing.under)
 			local pdef = minetest.registered_nodes[node.name]
 			if pdef and pdef.on_rightclick and
-					not (placer and placer:is_player() and
-					placer:get_player_control().sneak) then
+					not placer:get_player_control().sneak then
 				return pdef.on_rightclick(pointed_thing.under,
 						node, placer, itemstack, pointed_thing)
 			end
@@ -286,12 +290,12 @@ function doors.register(name, def)
 				return itemstack
 			end
 
-			local pn = placer and placer:get_player_name() or ""
+			local pn = placer:get_player_name()
 			if minetest.is_protected(pos, pn) or minetest.is_protected(above, pn) then
 				return itemstack
 			end
 
-			local dir = placer and minetest.dir_to_facedir(placer:get_look_dir()) or 0
+			local dir = minetest.dir_to_facedir(placer:get_look_dir())
 
 			local ref = {
 				{x = -1, y = 0, z = 0},
@@ -708,7 +712,7 @@ function doors.register_fencegate(name, def)
 	local fence = {
 		description = def.description,
 		drawtype = "mesh",
-		tiles = {},
+		tiles = {def.texture},
 		paramtype = "light",
 		paramtype2 = "facedir",
 		sunlight_propagates = true,
@@ -729,16 +733,6 @@ function doors.register_fencegate(name, def)
 			fixed = {-1/2, -1/2, -1/4, 1/2, 1/2, 1/4},
 		},
 	}
-
-
-	if type(def.texture) == "string" then
-		fence.tiles[1] = {name = def.texture, backface_culling = true}
-	elseif def.texture.backface_culling == nil then
-		fence.tiles[1] = table.copy(def.texture)
-		fence.tiles[1].backface_culling = true
-	else
-		fence.tiles[1] = def.texture
-	end
 
 	if not fence.sounds then
 		fence.sounds = default.node_sound_wood_defaults()
