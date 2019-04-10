@@ -11,3 +11,6 @@ I will add new achievements, new tools and many other new functions to become st
 License:
 See README.txt in each mod for more information
 Every code written by me is LGPLv2.1
+
+Notes:
+sfinv mod changed

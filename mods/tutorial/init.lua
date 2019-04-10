@@ -14,7 +14,7 @@ minetest.register_on_joinplayer(function(player)
 		offset = {x=0, y=30},
 		alignment = {x=1, y=0},
 		number = 0xFFFFFF ,
-		text = "Game Version	 :  1.0.2",
+		text = "Game Version	 :  1.1.0",
 	})
 end)
 
@@ -31,6 +31,298 @@ dofile(minetest.get_modpath("tutorial").."/other/mummy.lua")
 dofile(minetest.get_modpath("tutorial").."/other/regnum.lua")
 
 --v.0.1.0+
+
+minetest.register_craft({
+    output = 'tutorial:heart_mega20',
+    recipe = {
+		{'tutorial:megablock2','tutorial:megablock2', 'tutorial:megablock2'},
+		{'tutorial:megablock2','tutorial:heart_mega19','tutorial:megablock2'},
+		{'tutorial:thunder','tutorial:thunder', 'tutorial:thunder'},
+    }
+})
+minetest.register_craft({
+    output = 'tutorial:heart_mega19',
+    recipe = {
+		{'tutorial:megablock1','tutorial:megablock1', 'tutorial:megablock1'},
+		{'tutorial:megablock1','tutorial:heart_mega18','tutorial:megablock1'},
+		{'tutorial:thunder','tutorial:thunder', 'tutorial:thunder'},
+    }
+})
+minetest.register_craft({
+    output = 'tutorial:heart_mega18',
+    recipe = {
+		{'tutorial:megablock1','tutorial:megablock1', 'tutorial:megablock1'},
+		{'tutorial:megablock1','tutorial:heart_mega17','tutorial:megablock1'},
+		{'tutorial:thunder','tutorial:thunder', 'tutorial:thunder'},
+    }
+})
+minetest.register_craft({
+    output = 'tutorial:heart_mega17',
+    recipe = {
+		{'tutorial:megablock1','tutorial:megablock1', 'tutorial:megablock1'},
+		{'tutorial:megablock1','tutorial:heart_mega16','tutorial:megablock1'},
+		{'tutorial:thunder','tutorial:thunder', 'tutorial:thunder'},
+    }
+})
+minetest.register_craft({
+    output = 'tutorial:heart_mega16',
+    recipe = {
+		{'tutorial:megablock1','tutorial:megablock1', 'tutorial:megablock1'},
+		{'tutorial:megablock1','tutorial:heart_mega15','tutorial:megablock1'},
+		{'tutorial:thunder','tutorial:thunder', 'tutorial:thunder'},
+    }
+})
+minetest.register_craft({
+    output = 'tutorial:heart_mega13',
+    recipe = {
+		{'default:goldblock','default:goldblock', 'default:goldblock'},
+		{'default:goldblock','tutorial:heart_mega12','default:goldblock'},
+		{'tutorial:thunder','tutorial:thunder', 'tutorial:thunder'},
+    }
+})
+minetest.register_craft({
+    output = 'tutorial:heart_mega14',
+    recipe = {
+		{'nyancat:nyancat_rainbow','nyancat:nyancat_rainbow', 'nyancat:nyancat_rainbow'},
+		{'nyancat:nyancat_rainbow','tutorial:heart_mega13','nyancat:nyancat_rainbow'},
+		{'tutorial:thunder','tutorial:thunder', 'tutorial:thunder'},
+    }
+})
+minetest.register_craft({
+    output = 'tutorial:heart_mega15',
+    recipe = {
+		{'nyancat:nyancat_rainbow','nyancat:nyancat_rainbow', 'nyancat:nyancat_rainbow'},
+		{'nyancat:nyancat_rainbow','tutorial:heart_mega14','nyancat:nyancat_rainbow'},
+		{'tutorial:thunder','tutorial:thunder', 'tutorial:thunder'},
+    }
+})
+minetest.register_craft({
+    output = 'tutorial:heart_mega9',
+    recipe = {
+		{'tutorial:diamondblock2','tutorial:diamondblock2', 'tutorial:diamondblock2'},
+		{'tutorial:diamondblock2','tutorial:heart_mega8','tutorial:diamondblock2'},
+		{'tutorial:thunder','tutorial:thunder', 'tutorial:thunder'},
+    }
+})
+minetest.register_craft({
+    output = 'tutorial:heart_mega10',
+    recipe = {
+		{'tutorial:diamondblock2','tutorial:diamondblock2', 'tutorial:diamondblock2'},
+		{'tutorial:diamondblock2','tutorial:heart_mega9','tutorial:diamondblock2'},
+		{'tutorial:thunder','tutorial:thunder', 'tutorial:thunder'},
+    }
+})
+minetest.register_craft({
+    output = 'tutorial:heart_mega11',
+    recipe = {
+		{'tutorial:diamondblock2','tutorial:diamondblock2', 'tutorial:diamondblock2'},
+		{'tutorial:diamondblock2','tutorial:heart_mega10','tutorial:diamondblock2'},
+		{'tutorial:thunder','tutorial:thunder', 'tutorial:thunder'},
+    }
+})
+minetest.register_craft({
+    output = 'tutorial:heart_mega12',
+    recipe = {
+		{'tutorial:diamondblock2','tutorial:diamondblock2', 'tutorial:diamondblock2'},
+		{'tutorial:diamondblock2','tutorial:heart_mega11','tutorial:diamondblock2'},
+		{'tutorial:thunder','tutorial:thunder', 'tutorial:thunder'},
+    }
+})
+minetest.register_craft({
+    output = 'tutorial:heart_mega5',
+    recipe = {
+		{'tutorial:dunklematerie4','tutorial:dunklematerie4', 'tutorial:dunklematerie4'},
+		{'tutorial:dunklematerie4','tutorial:heart_mega4','tutorial:dunklematerie4'},
+		{'tutorial:thunder','tutorial:thunder', 'tutorial:thunder'},
+    }
+})
+minetest.register_craft({
+    output = 'tutorial:heart_mega6',
+    recipe = {
+		{'tutorial:dunklematerie4','tutorial:dunklematerie4', 'tutorial:dunklematerie4'},
+		{'tutorial:dunklematerie4','tutorial:heart_mega5','tutorial:dunklematerie4'},
+		{'tutorial:thunder','tutorial:thunder', 'tutorial:thunder'},
+    }
+})
+minetest.register_craft({
+    output = 'tutorial:heart_mega7',
+    recipe = {
+		{'tutorial:dunklematerie5','tutorial:dunklematerie5', 'tutorial:dunklematerie5'},
+		{'tutorial:dunklematerie5','tutorial:heart_mega6','tutorial:dunklematerie5'},
+		{'tutorial:thunder','tutorial:thunder', 'tutorial:thunder'},
+    }
+})
+minetest.register_craft({
+    output = 'tutorial:heart_mega8',
+    recipe = {
+		{'tutorial:dunklematerie6','tutorial:dunklematerie6', 'tutorial:dunklematerie6'},
+		{'tutorial:dunklematerie6','tutorial:heart_mega7','tutorial:dunklematerie6'},
+		{'tutorial:thunder','tutorial:thunder', 'tutorial:thunder'},
+    }
+})
+minetest.register_craft({
+    output = 'tutorial:heart_mega1',
+    recipe = {
+        {'tutorial:obsidian4', 'tutorial:obsidian4', 'tutorial:obsidian4'},
+        {'tutorial:obsidian4', 'tutorial:heart', 'tutorial:obsidian4'},
+        {'tutorial:thunder', 'tutorial:thunder', 'tutorial:thunder'},
+    }
+})
+minetest.register_craft({
+    output = 'tutorial:heart_mega2',
+    recipe = {
+        {'tutorial:obsidian4', 'tutorial:obsidian4', 'tutorial:obsidian4'},
+        {'tutorial:obsidian4','tutorial:heart_mega1','tutorial:obsidian4'},
+        {'tutorial:thunder', 'tutorial:thunder', 'tutorial:thunder'},
+    }
+})
+minetest.register_craft({
+    output = 'tutorial:heart_mega3',
+    recipe = {
+        {'tutorial:obsidian5', 'tutorial:obsidian5', 'tutorial:obsidian5'},
+        {'tutorial:obsidian5','tutorial:heart_mega2','tutorial:obsidian5'},
+        {'tutorial:thunder', 'tutorial:thunder', 'tutorial:thunder'},
+    }
+})
+minetest.register_craft({
+    output = '"tutorial:heart_mega4"',
+    recipe = {
+        {'tutorial:obsidian6', 'tutorial:obsidian6', 'tutorial:obsidian6'},
+        {'tutorial:obsidian6','tutorial:heart_mega3','tutorial:obsidian6'},
+        {'tutorial:thunder', 'tutorial:thunder', 'tutorial:thunder'},
+    }
+})
+minetest.register_craft({
+    output = 'tutorial:heart',
+    recipe = {
+        {'group:wood', 'group:wood', 'group:wood'},
+		{'group:wood', 'group:wood', 'group:wood'},
+		{'', 'group:wood', ''},
+    }
+})
+
+minetest.register_on_joinplayer(function(player)
+	local stack = player:get_inventory():get_stack("heart", 1)
+	if stack:get_name() == "tutorial:heart" then
+		player:set_properties({hp_max = 20})
+	elseif stack:get_name() == "tutorial:heart_mega1" then
+		player:set_properties({hp_max = 21})
+	elseif stack:get_name() == "tutorial:heart_mega2" then
+		player:set_properties({hp_max = 22})
+	elseif stack:get_name() == "tutorial:heart_mega3" then
+		player:set_properties({hp_max = 23})
+	elseif stack:get_name() == "tutorial:heart_mega4" then
+		player:set_properties({hp_max = 24})
+	elseif stack:get_name() == "tutorial:heart_mega5" then
+		player:set_properties({hp_max = 25})
+	elseif stack:get_name() == "tutorial:heart_mega6" then
+		player:set_properties({hp_max = 26})
+	elseif stack:get_name() == "tutorial:heart_mega7" then
+		player:set_properties({hp_max = 27})
+	elseif stack:get_name() == "tutorial:heart_mega8" then
+		player:set_properties({hp_max = 28})
+	elseif stack:get_name() == "tutorial:heart_mega9" then
+		player:set_properties({hp_max = 29})
+	elseif stack:get_name() == "tutorial:heart_mega10" then
+		player:set_properties({hp_max = 30})
+	elseif stack:get_name() == "tutorial:heart_mega11" then
+		player:set_properties({hp_max = 31})
+	elseif stack:get_name() == "tutorial:heart_mega12" then
+		player:set_properties({hp_max = 32})
+	elseif stack:get_name() == "tutorial:heart_mega13" then
+		player:set_properties({hp_max = 33})
+	elseif stack:get_name() == "tutorial:heart_mega14" then
+		player:set_properties({hp_max = 34})
+	elseif stack:get_name() == "tutorial:heart_mega15" then
+		player:set_properties({hp_max = 35})
+	elseif stack:get_name() == "tutorial:heart_mega16" then
+		player:set_properties({hp_max = 36})
+	elseif stack:get_name() == "tutorial:heart_mega17" then
+		player:set_properties({hp_max = 37})
+	elseif stack:get_name() == "tutorial:heart_mega18" then
+		player:set_properties({hp_max = 38})
+	elseif stack:get_name() == "tutorial:heart_mega19" then
+		player:set_properties({hp_max = 39})
+	elseif stack:get_name() == "tutorial:heart_mega20" then
+		player:set_properties({hp_max = 40})
+	else
+		player:set_properties({hp_max = 20})
+	end
+	local hpnum = player:get_attribute("hpnum")
+	if hpnum then
+		player:set_hp(hpnum)
+	end
+end)
+
+timer = 0
+minetest.register_globalstep(function(dtime)
+	timer = timer + dtime
+	if timer > 0.5 then
+		local players = minetest.get_connected_players()
+		for _,player in ipairs(players) do
+			local stack = player:get_inventory():get_stack("heart", 1)
+			player:set_attribute("hpnum", player:get_hp())
+			if stack:get_name() == "tutorial:heart" then
+				player:set_properties({hp_max = 20})
+			elseif stack:get_name() == "tutorial:heart_mega1" then
+				player:set_properties({hp_max = 21})
+			elseif stack:get_name() == "tutorial:heart_mega2" then
+				player:set_properties({hp_max = 22})
+			elseif stack:get_name() == "tutorial:heart_mega3" then
+				player:set_properties({hp_max = 23})
+			elseif stack:get_name() == "tutorial:heart_mega4" then
+				player:set_properties({hp_max = 24})
+			elseif stack:get_name() == "tutorial:heart_mega5" then
+				player:set_properties({hp_max = 25})
+			elseif stack:get_name() == "tutorial:heart_mega6" then
+				player:set_properties({hp_max = 26})
+			elseif stack:get_name() == "tutorial:heart_mega7" then
+				player:set_properties({hp_max = 27})
+			elseif stack:get_name() == "tutorial:heart_mega8" then
+				player:set_properties({hp_max = 28})
+			elseif stack:get_name() == "tutorial:heart_mega9" then
+				player:set_properties({hp_max = 29})
+			elseif stack:get_name() == "tutorial:heart_mega10" then
+				player:set_properties({hp_max = 30})
+			elseif stack:get_name() == "tutorial:heart_mega11" then
+				player:set_properties({hp_max = 31})
+			elseif stack:get_name() == "tutorial:heart_mega12" then
+				player:set_properties({hp_max = 32})
+			elseif stack:get_name() == "tutorial:heart_mega13" then
+				player:set_properties({hp_max = 33})
+			elseif stack:get_name() == "tutorial:heart_mega14" then
+				player:set_properties({hp_max = 34})
+			elseif stack:get_name() == "tutorial:heart_mega15" then
+				player:set_properties({hp_max = 35})
+			elseif stack:get_name() == "tutorial:heart_mega16" then
+				player:set_properties({hp_max = 36})
+			elseif stack:get_name() == "tutorial:heart_mega17" then
+				player:set_properties({hp_max = 37})
+			elseif stack:get_name() == "tutorial:heart_mega18" then
+				player:set_properties({hp_max = 38})
+			elseif stack:get_name() == "tutorial:heart_mega19" then
+				player:set_properties({hp_max = 39})
+			elseif stack:get_name() == "tutorial:heart_mega20" then
+				player:set_properties({hp_max = 40})
+			else
+				player:set_properties({hp_max = 20})
+			end
+		end
+		timer = 0
+	end
+end)
+
+
+minetest.register_craftitem("tutorial:heart", {
+	description = "Heart\nHeart-lv.0",
+	inventory_image = "tutorial_heart.png",
+})
+for i=1,20 do
+    minetest.register_craftitem("tutorial:heart_mega"..i, {
+        description = "Megaheart lv."..i.."\nHeart-lv."..i,
+	    inventory_image = "tutorial_heart_mega"..i..".png",
+    })
+end
 for i=1,29 do
     minetest.register_craftitem("tutorial:colorstick_empty"..i, {
         description = "Colorstick (".. math.ceil(i*3.33).."% filled)",
@@ -38,9 +330,17 @@ for i=1,29 do
     })
 end
 minetest.register_craftitem("tutorial:colorstick1", {
-        description = "Colorstick lv.1",
+        description = "Colorstick lv.1\nturns black in white ore and back",
 	    inventory_image = "tutorial_colorstick1.png",
-    })
+		on_use = function(itemstack, user, pointed_thing)
+			local node = minetest.get_node(pointed_thing.under)
+			if node.name == "tutorial:stone_with_white" then
+				minetest.set_node(pointed_thing.under,{name="tutorial:stone_with_black"})
+			elseif node.name == "tutorial:stone_with_black" then
+				minetest.set_node(pointed_thing.under,{name="tutorial:stone_with_white"})
+			end
+		end,
+})
 minetest.register_craft({
     output = 'tutorial:molestick1',
     recipe = {
@@ -3626,8 +3926,9 @@ recraft.get_formspec = function(player,pos)
         if re ~= 0 then
             local pr = ""
             if re2 == 0 then 
-            pr = "regnum:wings_"  
+				pr = "regnum:wings_"  
             elseif re2 == 1 then  
+				pr = "regnum:heart_" 
             elseif re2 == 2 then 
             elseif re2 == 3 then
             elseif re2 == 4 then
@@ -3744,6 +4045,7 @@ recraft.get_formspec = function(player,pos)
         end
         formspec = formspec
         .."item_image_button[0,1;1,1;regnum:wings_0;reg1;]"
+		.."item_image_button[1,1;1,1;regnum:heart_0;reg2;]"
         .."button[0,5;1,1;recrafta;1]"
         .."button[1,5;1,1;recraftb;2]"
         .."button[2,5;1,1;recraftc;3]"
@@ -3764,109 +4066,112 @@ recraft.get_formspec = function(player,pos)
         .."button[1,6;1,1;recraftr;18]"
         .."button[2,6;1,1;recrafts;19]"
         .."button[3,6;1,1;recraftt;20]"
-        .."button[4,6;1,1;recraftaa;21]"
-        .."button[5,6;1,1;recraftab;22]"
-        .."button[6,6;1,1;recraftac;23]"
-        .."button[7,6;1,1;recraftad;24]"
-        .."button[8,6;1,1;recraftae;25]"
-        .."button[9,6;1,1;recraftaf;26]"
-        .."button[10,6;1,1;recraftag;27]"
-        .."button[11,6;1,1;recraftah;28]"
-        .."button[12,6;1,1;recraftai;29]"
-        .."button[13,6;1,1;recraftaj;30]"
-        .."button[14,6;1,1;recraftak;31]"
-        .."button[15,6;1,1;recraftal;32]"
-        .."button[0,7;1,1;recraftam;33]"
-        .."button[1,7;1,1;recraftan;34]"
-        .."button[2,7;1,1;recraftao;35]"
-        .."button[3,7;1,1;recraftap;36]"
-        .."button[4,7;1,1;recraftaq;37]"
-        .."button[5,7;1,1;recraftar;38]"
-        .."button[6,7;1,1;recraftas;39]"
-        .."button[7,7;1,1;recraftat;40]"
-        .."button[8,7;1,1;recraftau;41]"
-        .."button[9,7;1,1;recraftav;42]"
-        .."button[10,7;1,1;recraftaw;43]"
-        .."button[11,7;1,1;recraftax;44]"
-        .."button[12,7;1,1;recraftay;45]"
-        .."button[13,7;1,1;recraftba;46]"
-        .."button[14,7;1,1;recraftbb;47]"
-        .."button[15,7;1,1;recraftbc;48]"
-        .."button[0,8;1,1;recraftbd;49]"
-        .."button[1,8;1,1;recraftca;50]"
-        .."button[2,8;1,1;recraftcb;51]"
-        .."button[3,8;1,1;recraftda;52]"
-        .."button[4,8;1,1;recraftdb;53]"
-        .."button[5,8;1,1;recraftdc;54]"
-        .."button[6,8;1,1;recraftdd;55]"
-        .."button[7,8;1,1;recraftde;56]"
-        .."button[8,8;1,1;recraftdf;57]"
-        .."button[9,8;1,1;recraftdg;58]"
-        .."button[10,8;1,1;recraftdh;59]"
-        .."button[11,8;1,1;recraftdi;60]"
-        .."button[12,8;1,1;recraftdj;61]"
-        .."button[13,8;1,1;recraftdk;62]"
-        .."button[14,8;1,1;recraftdl;63]"
-        .."button[15,8;1,1;recraftea;64]"
-        .."button[0,9;1,1;recrafteb;65]"
-        .."button[1,9;1,1;recraftec;66]"
-        .."button[2,9;1,1;recrafted;67]"
-        .."button[3,9;1,1;recraftee;68]"
-        .."button[4,9;1,1;recraftef;69]"
-        .."button[5,9;1,1;recrafteg;70]"
-        .."button[6,9;1,1;recraftfa;71]"
-        .."button[7,9;1,1;recraftfb;72]"
-        .."button[8,9;1,1;recraftfc;73]"
-        .."button[9,9;1,1;recraftfd;74]"
-        .."button[10,9;1,1;recraftfe;75]"
-        .."button[11,9;1,1;recraftga;76]"
-        .."button[12,9;1,1;recraftgb;77]"
-        .."button[13,9;1,1;recraftgc;78]"
-        .."button[14,9;1,1;recraftgd;79]"
-        .."button[15,9;1,1;recraftge;80]"
-        .."button[0,10;1,1;recraftgf;81]"
-        .."button[1,10;1,1;recraftgg;82]"
-        .."button[2,10;1,1;recraftgh;83]"
-        .."button[3,10;1,1;recraftgi;84]"
-        .."button[4,10;1,1;recraftgj;85]"
-        .."button[5,10;1,1;recraftgk;86]"
-        .."button[6,10;1,1;recraftgl;87]"
-        .."button[7,10;1,1;recraftgm;88]"
-        .."button[8,10;1,1;recraftgn;89]"
-        .."button[9,10;1,1;recraftgo;90]"
-        .."button[10,10;1,1;recraftgp;91]"
-        .."button[11,10;1,1;recraftgq;92]"
-        .."button[12,10;1,1;recraftgr;93]"
-        .."button[13,10;1,1;recraftgs;94]"
-        .."button[14,10;1,1;recraftgt;95]"
-        .."button[15,10;1,1;recraftgu;96]"
-        .."button[0,11;1,1;recraftgv;97]"
-        .."button[1,11;1,1;recraftgw;98]"
-        .."button[2,11;1,1;recraftgx;99]"
-        .."button[3,11;1,1;recraftgy;100]"
-        .."button[4,11;1,1;recraftha;101]"
-        .."button[5,11;1,1;recraftia;102]"
-        .."button[6,11;1,1;recraftib;103]"
-        .."button[7,11;1,1;recraftic;104]"
-        .."button[8,11;1,1;recraftid;105]"
-        .."button[9,11;1,1;recraftja;106]"
-        .."button[10,11;1,1;recraftjb;107]"
-        .."button[11,11;1,1;recraftjc;108]"
-        .."button[12,11;1,1;recraftjd;109]"
-        .."button[13,11;1,1;recraftje;110]"
-        .."button[14,11;1,1;recraftjf;111]"
-        .."button[15,11;1,1;recraftjg;112]"
-        .."button[0,12;1,1;recraftjh;113]"
-        .."button[1,12;1,1;recraftji;114]"
-        .."button[2,12;1,1;recraftjj;115]"
-        .."button[3,12;1,1;recraftka;116]"
-        .."button[4,12;1,1;recraftkb;117]"
-        .."button[5,12;1,1;recraftkc;118]"
-        .."button[6,12;1,1;recraftkd;119]"
-        .."button[7,12;1,1;recraftke;120]"
-        .."button[8,12;1,1;recraftkf;121]"
-        .."button[9,12;1,1;recraftla;122]"
-        .."button[10,12;1,1;recraftma;MAX]"
+		if re2 < 1 then
+			formspec = formspec
+			.."button[4,6;1,1;recraftaa;21]"
+			.."button[5,6;1,1;recraftab;22]"
+			.."button[6,6;1,1;recraftac;23]"
+			.."button[7,6;1,1;recraftad;24]"
+			.."button[8,6;1,1;recraftae;25]"
+			.."button[9,6;1,1;recraftaf;26]"
+			.."button[10,6;1,1;recraftag;27]"
+			.."button[11,6;1,1;recraftah;28]"
+			.."button[12,6;1,1;recraftai;29]"
+			.."button[13,6;1,1;recraftaj;30]"
+			.."button[14,6;1,1;recraftak;31]"
+			.."button[15,6;1,1;recraftal;32]"
+			.."button[0,7;1,1;recraftam;33]"
+			.."button[1,7;1,1;recraftan;34]"
+			.."button[2,7;1,1;recraftao;35]"
+			.."button[3,7;1,1;recraftap;36]"
+			.."button[4,7;1,1;recraftaq;37]"
+			.."button[5,7;1,1;recraftar;38]"
+			.."button[6,7;1,1;recraftas;39]"
+			.."button[7,7;1,1;recraftat;40]"
+			.."button[8,7;1,1;recraftau;41]"
+			.."button[9,7;1,1;recraftav;42]"
+			.."button[10,7;1,1;recraftaw;43]"
+			.."button[11,7;1,1;recraftax;44]"
+			.."button[12,7;1,1;recraftay;45]"
+			.."button[13,7;1,1;recraftba;46]"
+			.."button[14,7;1,1;recraftbb;47]"
+			.."button[15,7;1,1;recraftbc;48]"
+			.."button[0,8;1,1;recraftbd;49]"
+			.."button[1,8;1,1;recraftca;50]"
+			.."button[2,8;1,1;recraftcb;51]"
+			.."button[3,8;1,1;recraftda;52]"
+			.."button[4,8;1,1;recraftdb;53]"
+			.."button[5,8;1,1;recraftdc;54]"
+			.."button[6,8;1,1;recraftdd;55]"
+			.."button[7,8;1,1;recraftde;56]"
+			.."button[8,8;1,1;recraftdf;57]"
+			.."button[9,8;1,1;recraftdg;58]"
+			.."button[10,8;1,1;recraftdh;59]"
+			.."button[11,8;1,1;recraftdi;60]"
+			.."button[12,8;1,1;recraftdj;61]"
+			.."button[13,8;1,1;recraftdk;62]"
+			.."button[14,8;1,1;recraftdl;63]"
+			.."button[15,8;1,1;recraftea;64]"
+			.."button[0,9;1,1;recrafteb;65]"
+			.."button[1,9;1,1;recraftec;66]"
+			.."button[2,9;1,1;recrafted;67]"
+			.."button[3,9;1,1;recraftee;68]"
+			.."button[4,9;1,1;recraftef;69]"
+			.."button[5,9;1,1;recrafteg;70]"
+			.."button[6,9;1,1;recraftfa;71]"
+			.."button[7,9;1,1;recraftfb;72]"
+			.."button[8,9;1,1;recraftfc;73]"
+			.."button[9,9;1,1;recraftfd;74]"
+			.."button[10,9;1,1;recraftfe;75]"
+			.."button[11,9;1,1;recraftga;76]"
+			.."button[12,9;1,1;recraftgb;77]"
+			.."button[13,9;1,1;recraftgc;78]"
+			.."button[14,9;1,1;recraftgd;79]"
+			.."button[15,9;1,1;recraftge;80]"
+			.."button[0,10;1,1;recraftgf;81]"
+			.."button[1,10;1,1;recraftgg;82]"
+			.."button[2,10;1,1;recraftgh;83]"
+			.."button[3,10;1,1;recraftgi;84]"
+			.."button[4,10;1,1;recraftgj;85]"
+			.."button[5,10;1,1;recraftgk;86]"
+			.."button[6,10;1,1;recraftgl;87]"
+			.."button[7,10;1,1;recraftgm;88]"
+			.."button[8,10;1,1;recraftgn;89]"
+			.."button[9,10;1,1;recraftgo;90]"
+			.."button[10,10;1,1;recraftgp;91]"
+			.."button[11,10;1,1;recraftgq;92]"
+			.."button[12,10;1,1;recraftgr;93]"
+			.."button[13,10;1,1;recraftgs;94]"
+			.."button[14,10;1,1;recraftgt;95]"
+			.."button[15,10;1,1;recraftgu;96]"
+			.."button[0,11;1,1;recraftgv;97]"
+			.."button[1,11;1,1;recraftgw;98]"
+			.."button[2,11;1,1;recraftgx;99]"
+			.."button[3,11;1,1;recraftgy;100]"
+			.."button[4,11;1,1;recraftha;101]"
+			.."button[5,11;1,1;recraftia;102]"
+			.."button[6,11;1,1;recraftib;103]"
+			.."button[7,11;1,1;recraftic;104]"
+			.."button[8,11;1,1;recraftid;105]"
+			.."button[9,11;1,1;recraftja;106]"
+			.."button[10,11;1,1;recraftjb;107]"
+			.."button[11,11;1,1;recraftjc;108]"
+			.."button[12,11;1,1;recraftjd;109]"
+			.."button[13,11;1,1;recraftje;110]"
+			.."button[14,11;1,1;recraftjf;111]"
+			.."button[15,11;1,1;recraftjg;112]"
+			.."button[0,12;1,1;recraftjh;113]"
+			.."button[1,12;1,1;recraftji;114]"
+			.."button[2,12;1,1;recraftjj;115]"
+			.."button[3,12;1,1;recraftka;116]"
+			.."button[4,12;1,1;recraftkb;117]"
+			.."button[5,12;1,1;recraftkc;118]"
+			.."button[6,12;1,1;recraftkd;119]"
+			.."button[7,12;1,1;recraftke;120]"
+			.."button[8,12;1,1;recraftkf;121]"
+			.."button[9,12;1,1;recraftla;122]"
+			.."button[10,12;1,1;recraftma;MAX]"
+		end
 	return formspec
 end
 minetest.register_on_player_receive_fields(function(player, formname, fields)
@@ -3926,6 +4231,11 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
     if fields.reg1 then
         player_inv:set_size("recr2", 1)
         player_inv:set_stack("recr2", 1, "")
+		inventory_plus.set_inventory_formspec(player, recraft.get_formspec(player))
+	end
+	if fields.reg2 then
+        player_inv:set_size("recr2", 1)
+        player_inv:set_stack("recr2", 1, "default:dirt")
 		inventory_plus.set_inventory_formspec(player, recraft.get_formspec(player))
 	end
 	if fields.recraft then
