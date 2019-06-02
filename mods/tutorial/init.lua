@@ -14,7 +14,7 @@ minetest.register_on_joinplayer(function(player)
 		offset = {x=0, y=30},
 		alignment = {x=1, y=0},
 		number = 0xFFFFFF ,
-		text = "Game Version	 :  1.1.2",
+		text = "Game Version	 :  1.1.3",
 	})
 end)
 
@@ -2169,17 +2169,17 @@ minetest.register_craft({
     }
 })
 minetest.register_on_joinplayer(function(player)
-   local override_table = player:get_physics_override()
-   override_table.new_move = false
-   override_table.sneak_glitch = true
-   player:set_physics_override(override_table)
-   local player_inv = player:get_inventory()
-   player_inv:set_stack("crtime", 1, nil)
-   player_inv:set_size("year", 1)
-	if player_inv:room_for_item("main", "tutorial:trophy_year1") and player_inv:get_stack("year", 1):get_count() == 0 then
-		player_inv:add_item("main", "tutorial:trophy_year1")
-		player_inv:set_stack("year", 1, "default:dirt")
-	end
+	local override_table = player:get_physics_override()
+	override_table.new_move = false
+	override_table.sneak_glitch = true
+	player:set_physics_override(override_table)
+	local player_inv = player:get_inventory()
+	player_inv:set_stack("crtime", 1, nil)
+	--player_inv:set_size("year", 1)
+	--if player_inv:room_for_item("main", "tutorial:trophy_year1") and player_inv:get_stack("year", 1):get_count() == 0 then
+	--	player_inv:add_item("main", "tutorial:trophy_year1")
+	--	player_inv:set_stack("year", 1, "default:dirt")
+	--end
 end)
 local crafting6 = {}
 crafting6.get_formspec = function(player, pos)
