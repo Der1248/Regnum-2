@@ -14,7 +14,7 @@ minetest.register_on_joinplayer(function(player)
 		offset = {x=0, y=30},
 		alignment = {x=1, y=0},
 		number = 0xFFFFFF ,
-		text = "Game Version	 :  1.1.5",
+		text = "Game Version	 :  1.1.6",
 	})
 end)
 
@@ -327,11 +327,11 @@ minetest.register_globalstep(function(dtime)
 		for _,player in ipairs(players) do
 		
 			local player_inv = player:get_inventory()
-			player_inv:set_size("year", 2)
-			if player_inv:room_for_item("main", "tutorial:trophy_year2") and player_inv:get_stack("year", 2):get_count() == 0 then
-				player_inv:add_item("main", "tutorial:trophy_year2")
-				player_inv:set_stack("year", 2, "default:dirt")
-			end
+			--player_inv:set_size("year", 2)
+			--if player_inv:room_for_item("main", "tutorial:trophy_year2") and player_inv:get_stack("year", 2):get_count() == 0 then
+			--	player_inv:add_item("main", "tutorial:trophy_year2")
+			--	player_inv:set_stack("year", 2, "default:dirt")
+			--end
 			
 			local stack = player:get_inventory():get_stack("heart", 1)
 			player:set_attribute("hpnum", player:get_hp())
