@@ -114,6 +114,7 @@ local mob_class = {
 	floats = 1, -- floats in water by default
 	replace_offset = 0,
 	timer = 0,
+	metadata3 = 0,
 	env_damage_timer = 0, -- only used when state = "attack"
 	tamed = false,
 	pause_timer = 0,
@@ -742,8 +743,10 @@ function mob_class:check_for_death(cmi_cause)
 		if use_cmi then
 			cmi.notify_die(self.object, cmi_cause)
 		end
-
-		self.object:remove()
+		if self.name == "mobs:knight_1248" or self.name == "mobs:knight" then
+		else
+			self.object:remove()
+		end
 
 		return true
 	end
@@ -772,7 +775,10 @@ function mob_class:check_for_death(cmi_cause)
 				cmi.notify_die(self.object, cmi_cause)
 			end
 
-			self.object:remove()
+			if self.name == "mobs:knight_1248" or self.name == "mobs:knight" then
+			else
+				self.object:remove()
+			end
 		end, self)
 	else
 
@@ -780,7 +786,10 @@ function mob_class:check_for_death(cmi_cause)
 			cmi.notify_die(self.object, cmi_cause)
 		end
 
-		self.object:remove()
+		if self.name == "mobs:knight_1248" or self.name == "mobs:knight" then
+		else
+			self.object:remove()
+		end
 	end
 
 	effect(pos, 20, "tnt_smoke.png")
@@ -852,7 +861,10 @@ function mob_class:do_env_damage()
 
 	-- remove mob if standing inside ignore node
 	if self.standing_in == "ignore" then
-		self.object:remove()
+		if self.name == "mobs:knight_1248" or self.name == "mobs:knight" then
+		else
+			self.object:remove()
+		end
 		return
 	end
 
@@ -863,12 +875,14 @@ function mob_class:do_env_damage()
 
 		if light >= self.light_damage_min
 		and light <= self.light_damage_max then
-
-			self.health = self.health - self.light_damage
-
-			effect(pos, 5, "tnt_smoke.png")
-
-			if self:check_for_death({type = "light"}) then return end
+			if self.name == "mobs:knight_1248" or self.name == "mobs:knight" then
+			else
+				self.health = self.health - self.light_damage
+				effect(pos, 5, "tnt_smoke.png")
+				if self:check_for_death({type = "light"}) then 
+					return
+				end
+			end
 		end
 	end
 
@@ -881,13 +895,14 @@ function mob_class:do_env_damage()
 	and nodef.groups.water then
 
 		if self.water_damage ~= 0 then
-
-			self.health = self.health - self.water_damage
-
-			effect(pos, 5, "bubble.png", nil, nil, 1, nil)
-
-			if self:check_for_death({type = "environment",
-					pos = pos, node = self.standing_in}) then return end
+			if self.name == "mobs:knight_1248" or self.name == "mobs:knight" then
+			else
+				self.health = self.health - self.water_damage
+				effect(pos, 5, "bubble.png", nil, nil, 1, nil)
+				if self:check_for_death({type = "environment", pos = pos, node = self.standing_in}) then 
+					return 
+				end
+			end
 		end
 
 	-- lava or fire or ignition source
@@ -898,24 +913,26 @@ function mob_class:do_env_damage()
 --	or self.standing_in == node_permanent_flame) then
 
 		if self.lava_damage ~= 0 then
-
-			self.health = self.health - self.lava_damage
-
-			effect(pos, 5, "fire_basic_flame.png", nil, nil, 1, nil)
-
-			if self:check_for_death({type = "environment",
-					pos = pos, node = self.standing_in, hot = true}) then return end
+			if self.name == "mobs:dog" or self.name == "mobs:cat" or self.name == "mobs:sheep" or self.name == "mobs:dragon" or self.name == "mobs:knight_1248" or self.name == "mobs:fox" or self.name == "mobs:tortoise" then
+			else
+				self.health = self.health - self.lava_damage
+				effect(pos, 5, "fire_basic_flame.png", nil, nil, 1, nil)
+				if self:check_for_death({type = "environment", pos = pos, node = self.standing_in, hot = true}) then 
+					return 
+				end
+			end
 		end
 
 	-- damage_per_second node check
 	elseif nodef.damage_per_second ~= 0 then
-
-		self.health = self.health - nodef.damage_per_second
-
-		effect(pos, 5, "tnt_smoke.png")
-
-		if self:check_for_death({type = "environment",
-				pos = pos, node = self.standing_in}) then return end
+		if self.name == "mobs:dog" or self.name == "mobs:cat" or self.name == "mobs:sheep" or self.name == "mobs:dragon" or self.name == "mobs:knight_1248" or self.name == "mobs:fox" or self.name == "mobs:tortoise" then
+		else
+			self.health = self.health - nodef.damage_per_second
+			effect(pos, 5, "tnt_smoke.png")
+			if self:check_for_death({type = "environment", pos = pos, node = self.standing_in}) then 
+				return 
+			end
+		end
 	end
 --[[
 	--- suffocation inside solid node
@@ -2218,7 +2235,10 @@ function mob_class:do_states(dtime)
 						node_break_radius = 1
 					end
 
-					self.object:remove()
+					if self.name == "mobs:knight_1248" or self.name == "mobs:knight" then
+					else
+						self.object:remove()
+					end
 
 					if minetest.get_modpath("tnt") and tnt and tnt.boom
 					and not minetest.is_protected(pos, "") then
@@ -2531,16 +2551,15 @@ function mob_class:falling(pos)
 			local d = (self.old_y or 0) - self.object:get_pos().y
 
 			if d > 5 then
-
-				self.health = self.health - floor(d - 5)
-
-				effect(pos, 5, "tnt_smoke.png", 1, 2, 2, nil)
-
-				if self:check_for_death({type = "fall"}) then
-					return
+				if self.name == "mobs:knight_1248" or self.name == "mobs:knight" then
+				else
+					self.health = self.health - floor(d - 5)
+					effect(pos, 5, "tnt_smoke.png", 1, 2, 2, nil)
+					if self:check_for_death({type = "fall"}) then
+						return
+					end
 				end
 			end
-
 			self.old_y = self.object:get_pos().y
 		end
 	end
@@ -2817,8 +2836,10 @@ function mob_class:get_staticdata()
 	and self.lifetimer < 20000 then
 
 		--print ("REMOVED " .. self.name)
-
-		self.object:remove()
+		if self.name == "mobs:knight_1248" or self.name == "mobs:knight" then
+		else
+			self.object:remove()
+		end
 
 		return ""-- nil
 	end
@@ -2864,7 +2885,10 @@ function mob_class:mob_activate(staticdata, def, dtime)
 	if self.type == "monster"
 	and peaceful_only then
 
-		self.object:remove()
+		if self.name == "mobs:knight_1248" or self.name == "mobs:knight" then
+		else
+			self.object:remove()
+		end
 
 		return
 	end
@@ -3088,7 +3112,10 @@ function mob_class:mob_expire(pos, dtime)
 
 			effect(pos, 15, "tnt_smoke.png", 2, 4, 2, 0)
 
-			self.object:remove()
+			if self.name == "mobs:knight_1248" or self.name == "mobs:knight" then
+			else
+				self.object:remove()
+			end
 
 			return
 		end
@@ -3098,71 +3125,74 @@ end
 
 -- main mob function
 function mob_class:on_step(dtime)
-	if self.name == "mobs:knight" then
-        if self.owner and minetest.get_player_by_name(self.owner) then
-            minetest.get_player_by_name(self.owner):set_attribute("knight2x", ""..math.floor(self.object:getpos().x+0.5))
-            minetest.get_player_by_name(self.owner):set_attribute("knight2y", ""..math.floor(self.object:getpos().y+0.5))
-            minetest.get_player_by_name(self.owner):set_attribute("knight2z", ""..math.floor(self.object:getpos().z+0.5))
-        end
-		local pos = self.object:getpos()
-        if minetest.get_player_by_name(self.owner) then
-			local inv = minetest.get_player_by_name(self.owner):get_inventory()
-			inv:set_size("knight",8)
-			for _,object in ipairs(minetest.env:get_objects_inside_radius(pos, 15)) do
-				if not object:is_player() and object:get_luaentity() and object:get_luaentity().name == "__builtin:item" then
-					if inv and inv:room_for_item("knight", ItemStack(object:get_luaentity().itemstring)) then
-						if ItemStack(object:get_luaentity().itemstring):get_name() == "tutorial:geschenkpapier" or ItemStack(object:get_luaentity().itemstring):get_name() == "tutorial:geschenkpapier_death" or ItemStack(object:get_luaentity().itemstring):get_name() == "tutorial:dna_string" then
-							object:remove()
-							inv:add_item("knight", ItemStack(object:get_luaentity().itemstring))
+	self.metadata3 = self.metadata3 + dtime
+    if self.metadata3 > 1 then
+        self.metadata3 = 0
+		if self.name == "mobs:knight_1248" then
+			if self.owner and minetest.get_player_by_name(self.owner) then
+				minetest.get_player_by_name(self.owner):set_attribute("knightx", ""..math.floor(self.object:getpos().x+0.5))
+				minetest.get_player_by_name(self.owner):set_attribute("knighty", ""..math.floor(self.object:getpos().y+0.5))
+				minetest.get_player_by_name(self.owner):set_attribute("knightz", ""..math.floor(self.object:getpos().z+0.5))
+			end
+		end
+		if self.name == "mobs:knight" then
+			if self.owner and minetest.get_player_by_name(self.owner) then
+				minetest.get_player_by_name(self.owner):set_attribute("knight2x", ""..math.floor(self.object:getpos().x+0.5))
+				minetest.get_player_by_name(self.owner):set_attribute("knight2y", ""..math.floor(self.object:getpos().y+0.5))
+				minetest.get_player_by_name(self.owner):set_attribute("knight2z", ""..math.floor(self.object:getpos().z+0.5))
+			end
+			local pos = self.object:getpos()
+			if minetest.get_player_by_name(self.owner) then
+				local inv = minetest.get_player_by_name(self.owner):get_inventory()
+				inv:set_size("knight",8)
+				for _,object in ipairs(minetest.env:get_objects_inside_radius(pos, 15)) do
+					if not object:is_player() and object:get_luaentity() and object:get_luaentity().name == "__builtin:item" then
+						if inv and inv:room_for_item("knight", ItemStack(object:get_luaentity().itemstring)) then
+							if ItemStack(object:get_luaentity().itemstring):get_name() == "tutorial:geschenkpapier" or ItemStack(object:get_luaentity().itemstring):get_name() == "tutorial:geschenkpapier_death" or ItemStack(object:get_luaentity().itemstring):get_name() == "tutorial:dna_string" then
+								object:remove()
+								inv:add_item("knight", ItemStack(object:get_luaentity().itemstring))
+							end
 						end
 					end
 				end
 			end
-        end
-	end
-    if self.name == "mobs:knight_1248" then
-        if self.owner and minetest.get_player_by_name(self.owner) then
-            minetest.get_player_by_name(self.owner):set_attribute("knightx", ""..math.floor(self.object:getpos().x+0.5))
-            minetest.get_player_by_name(self.owner):set_attribute("knighty", ""..math.floor(self.object:getpos().y+0.5))
-            minetest.get_player_by_name(self.owner):set_attribute("knightz", ""..math.floor(self.object:getpos().z+0.5))
-        end
-        
-    end
-	if self.name == "mobs:knight" and self.metadata2 == 1 then
-		local pos = self.object:getpos()
-		local all_objects = minetest.get_objects_inside_radius(pos, 15)
-		local players = {}
-		local k = 0
-		local _,obj
-		for _,obj in ipairs(all_objects) do
-			if obj:is_player() then
-				if self.owner == obj:get_player_name() then
-					k = 1	
+		end
+		if self.name == "mobs:knight" and self.metadata2 == 1 then
+			local pos = self.object:getpos()
+			local all_objects = minetest.get_objects_inside_radius(pos, 15)
+			local players = {}
+			local k = 0
+			local _,obj
+			for _,obj in ipairs(all_objects) do
+				if obj:is_player() then
+					if self.owner == obj:get_player_name() then
+						k = 1	
+					end
+				end
+			end
+			if k == 0 then
+				if minetest.get_player_by_name(self.owner) then
+					self.object:setpos({x = minetest.get_player_by_name(self.owner):getpos().x, y = minetest.get_player_by_name(self.owner):getpos().y+1, z = minetest.get_player_by_name(self.owner):getpos().z+1})
 				end
 			end
 		end
-		if k == 0 then
-			if minetest.get_player_by_name(self.owner) then
-				self.object:setpos({x = minetest.get_player_by_name(self.owner):getpos().x, y = minetest.get_player_by_name(self.owner):getpos().y+1, z = minetest.get_player_by_name(self.owner):getpos().z+1})
-			end
-		end
-	end
-    if self.name == "mobs:knight_1248" and self.metadata2 == 1 then
-		local pos = self.object:getpos()
-		local all_objects = minetest.get_objects_inside_radius(pos, 15)
-		local players = {}
-		local k = 0
-		local _,obj
-		for _,obj in ipairs(all_objects) do
-			if obj:is_player() then
-				if self.owner == obj:get_player_name() then
-					k = 1	
+		if self.name == "mobs:knight_1248" and self.metadata2 == 1 then
+			local pos = self.object:getpos()
+			local all_objects = minetest.get_objects_inside_radius(pos, 15)
+			local players = {}
+			local k = 0
+			local _,obj
+			for _,obj in ipairs(all_objects) do
+				if obj:is_player() then
+					if self.owner == obj:get_player_name() then
+						k = 1	
+					end
 				end
 			end
-		end
-		if k == 0 then
-			if minetest.get_player_by_name(self.owner) then
-				self.object:setpos({x = minetest.get_player_by_name(self.owner):getpos().x, y = minetest.get_player_by_name(self.owner):getpos().y+1, z = minetest.get_player_by_name(self.owner):getpos().z+1})
+			if k == 0 then
+				if minetest.get_player_by_name(self.owner) then
+					self.object:setpos({x = minetest.get_player_by_name(self.owner):getpos().x, y = minetest.get_player_by_name(self.owner):getpos().y+1, z = minetest.get_player_by_name(self.owner):getpos().z+1})
+				end
 			end
 		end
 	end
@@ -3806,7 +3836,10 @@ function mobs:register_arrow(name, def)
 			if self.switch == 0
 			or self.timer > 150 then
 
-				self.object:remove() ; -- print ("removed arrow")
+				if self.name == "mobs:knight_1248" or self.name == "mobs:knight" then
+				else
+					self.object:remove()
+				end
 
 				return
 			end
@@ -3845,7 +3878,10 @@ function mobs:register_arrow(name, def)
 						minetest.add_item(self.lastpos, self.object:get_luaentity().name)
 					end
 
-					self.object:remove() ; -- print ("hit node")
+					if self.name == "mobs:knight_1248" or self.name == "mobs:knight" then
+					else
+						self.object:remove()
+					end
 
 					return
 				end
@@ -3859,7 +3895,10 @@ function mobs:register_arrow(name, def)
 					and player:is_player() then
 
 						self:hit_player(player)
-						self.object:remove() ; -- print ("hit player")
+						if self.name == "mobs:knight_1248" or self.name == "mobs:knight" then
+						else
+							self.object:remove()
+						end
 						return
 					end
 
@@ -3873,7 +3912,10 @@ function mobs:register_arrow(name, def)
 
 						self:hit_mob(player)
 
-						self.object:remove() ;  --print ("hit mob")
+						if self.name == "mobs:knight_1248" or self.name == "mobs:knight" then
+						else
+							self.object:remove()
+						end
 
 						return
 					end
@@ -4076,7 +4118,10 @@ function mobs:force_capture(self, clicker)
 		minetest.add_item(clicker:get_pos(), new_stack)
 	end
 
-	self.object:remove()
+	if self.name == "mobs:knight_1248" or self.name == "mobs:knight" then
+	else
+		self.object:remove()
+	end
 
 	self:mob_sound("default_place_node_hard")
 end
@@ -4190,7 +4235,10 @@ function mobs:capture_mob(self, clicker, chance_hand, chance_net, chance_lasso,
 				minetest.add_item(clicker:get_pos(), new_stack)
 			end
 
-			self.object:remove()
+			if self.name == "mobs:knight_1248" or self.name == "mobs:knight" then
+			else
+				self.object:remove()
+			end
 
 			self:mob_sound("default_place_node_hard")
 
@@ -4424,7 +4472,10 @@ function mobs:alias_mob(old_name, new_name)
 				minetest.add_entity(self.object:get_pos(), new_name)
 			end
 
-			self.object:remove()
+			if self.name == "mobs:knight_1248" or self.name == "mobs:knight" then
+			else
+				self.object:remove()
+			end
 		end
 	})
 end

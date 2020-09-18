@@ -21,6 +21,8 @@ local function drill_dig_it0 (pos,player)
 	if node.name == "default:lava_source" then return end
 	if node.name == "default:lava_flowing" then return end
 	if node.name == "tutorial:stone_with_titan" then return end
+	if node.name == "tutorial:stone_with_rot" then return end
+	if node.name == "tutorial:stone_with_blau" then return end
 	if node.name == "default:water_source" then minetest.remove_node(pos) return end
 	if node.name == "default:water_flowing" then minetest.remove_node(pos) return end
 	minetest.node_dig(pos,node,player)
@@ -302,6 +304,7 @@ minetest.register_tool("technic:mining_drill", {
 	description = S("Mining Drill Mk%d"):format(1),
 	inventory_image = "technic_mining_drill.png",
 	wear_represents = "technic_RE_charge",
+	groups = {not_in_creative_inventory=1},
 	on_refill = technic.refill_RE_charge,
 	on_use = function(itemstack, user, pointed_thing)
 		mining_drill_mk1_handler(itemstack, user, pointed_thing)
@@ -318,6 +321,7 @@ for i = 1, 5 do
 		inventory_image = "technic_mining_drill.png^technic_tool_mode"..i..".png",
 		wield_image = "technic_mining_drill_mk2.png",
 		wear_represents = "technic_RE_charge",
+		groups = {not_in_creative_inventory=1},
 		on_refill = technic.refill_RE_charge,
 		groups = {not_in_creative_inventory=1},
 		on_use = function(itemstack, user, pointed_thing)
@@ -330,6 +334,7 @@ minetest.register_tool("technic:mining_drill_mk2", {
 	description = S("Mining Drill Mk%d"):format(2),
 	inventory_image = "technic_mining_drill_mk2.png",
 	wear_represents = "technic_RE_charge",
+	groups = {not_in_creative_inventory=1},
 	on_refill = technic.refill_RE_charge,
 	on_use = function(itemstack, user, pointed_thing)
 		mining_drill_mk_handler(itemstack, user, pointed_thing)
@@ -346,6 +351,7 @@ for i = 1, 5 do
 		inventory_image = "technic_mining_drill_mk2.png^technic_tool_mode"..i..".png",
 		wield_image = "technic_mining_drill_mk2.png",
 		wear_represents = "technic_RE_charge",
+		groups = {not_in_creative_inventory=1},
 		on_refill = technic.refill_RE_charge,
 		groups = {not_in_creative_inventory=1},
 		on_use = function(itemstack, user, pointed_thing)
@@ -359,6 +365,7 @@ minetest.register_tool("technic:mining_drill_mk3", {
 	description = S("Mining Drill Mk%d"):format(3),
 	inventory_image = "technic_mining_drill_mk3.png",
 	wear_represents = "technic_RE_charge",
+	groups = {not_in_creative_inventory=1},
 	on_refill = technic.refill_RE_charge,
 	on_use = function(itemstack, user, pointed_thing)
 	mining_drill_mk_handler(itemstack,user,pointed_thing)
@@ -375,6 +382,7 @@ for i=1,5,1 do
 		inventory_image = "technic_mining_drill_mk3.png^technic_tool_mode"..i..".png",
 		wield_image = "technic_mining_drill_mk3.png",
 		wear_represents = "technic_RE_charge",
+		groups = {not_in_creative_inventory=1},
 		on_refill = technic.refill_RE_charge,
 		groups = {not_in_creative_inventory=1},
 		on_use = function(itemstack, user, pointed_thing)

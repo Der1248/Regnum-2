@@ -58,9 +58,17 @@ local function make_label(format_string, format_string_config, label, start_valu
 		if order[o] == "label" then
 			table.insert(params, label)
 		elseif order[o] == "value" then
-			table.insert(params, start_value)
+			if format_string_config.format_value then
+				table.insert(params, string.format(format_string_config.format_value, start_value))
+			else
+				table.insert(params, start_value)
+			end
 		elseif order[o] == "max_value" then
-			table.insert(params, max_value)
+			if format_string_config.format_max_value then
+				table.insert(params, string.format(format_string_config.format_max_value, max_value))
+			else
+				table.insert(params, max_value)
+			end
 		end
 	end
 	local ret
@@ -148,7 +156,16 @@ function hb.register_hudbar(identifier, text_color, label, textures, default_sta
 		format_string = N("@1: @2/@3")
 	end
 	if format_string_config == nil then
-		format_string_config = { order = { "label", "value", "max_value" } }
+		format_string_config = {}
+	end
+	if format_string_config.order == nil then
+		format_string_config.order = { "label", "value", "max_value" }
+	end
+	if format_string_config.format_value == nil then
+		format_string_config.format_value = "%d"
+	end
+	if format_string_config.format_max_value == nil then
+		format_string_config.format_max_value = "%d"
 	end
 
 	hudtable.add_all = function(player, hudtable, start_value, start_max, start_hidden)
@@ -196,7 +213,6 @@ function hb.register_hudbar(identifier, text_color, label, textures, default_sta
 			end
 		elseif hb.settings.bar_type == "statbar_modern" then
 			if textures.bgicon ~= nil then
-				
 				ids.bg = player:hud_add({
 					hud_elem_type = "statbar",
 					position = pos,
@@ -212,15 +228,16 @@ function hb.register_hudbar(identifier, text_color, label, textures, default_sta
 		local bar_image, bar_size
 		if hb.settings.bar_type == "progress_bar" then
 			bar_image = textures.bar
-			bar_size = {x=3, y=22}
+			-- NOTE: Intentionally set to nil. For some reason, on some systems,
+			-- the progress bar is displaced when the bar_size is set explicitly here.
+			-- On the other hand, setting this to nil is deprecated in MT 5.0.0 due to
+			-- a debug log warning, but nothing is explained in lua_api.txt.
+			-- This section is a potential bug magnet, please watch with care!
+			-- The size of the bar image is expected to be exactly 2×16 pixels.
+			bar_size = nil
 		elseif hb.settings.bar_type == "statbar_classic" or hb.settings.bar_type == "statbar_modern" then
 			bar_image = textures.icon
 			bar_size = {x=24, y=24}
-		end
-		if offset.x == 15 then
-			offset2 = { x = offset.x+5, y = offset.y-29 }
-		else
-			offset2 = { x = offset.x-59, y = offset.y-29 }
 		end
 		ids.bar = player:hud_add({
 			hud_elem_type = "statbar",
@@ -228,7 +245,7 @@ function hb.register_hudbar(identifier, text_color, label, textures, default_sta
 			text = bar_image,
 			number = barnumber,
 			alignment = {x=-1,y=-1},
-			offset = offset2,
+			offset = offset,
 			direction = 0,
 			size = bar_size,
 		})
@@ -240,7 +257,7 @@ function hb.register_hudbar(identifier, text_color, label, textures, default_sta
 				alignment = {x=1,y=1},
 				number = text_color,
 				direction = 0,
-				offset = { x = offset.x + 2,  y = offset.y + 1},
+				offset = { x = offset.x + 2,  y = offset.y - 1},
 		})
 		end
 		-- Do not forget to update hb.get_hudbar_state if you add new fields to the state table
@@ -296,11 +313,7 @@ function hb.change_hudbar(player, identifier, new_value, new_max_value, new_icon
 	if not player_exists(player) then
 		return false
 	end
-	if new_max_value < new_value then
-		--minetest.log("error", main_error_text.."new_max_value ("..new_max_value..") is smaller than new_value ("..new_value..")!")
-		--player:set_hp(new_max_value)
-		return false
-	end
+
 	local name = player:get_player_name()
 	local hudtable = hb.get_hudtable(identifier)
 	local value_changed, max_changed = false, false
@@ -351,7 +364,9 @@ function hb.change_hudbar(player, identifier, new_value, new_max_value, new_icon
 
 	local main_error_text =
 		"[hudbars] Bad call to hb.change_hudbar, identifier: “"..tostring(identifier).."”, player name: “"..name.."”. "
-	
+	if new_max_value < new_value then
+		minetest.log("error", main_error_text.."new_max_value ("..new_max_value..") is smaller than new_value ("..new_value..")!")
+	end
 	if new_max_value < 0 then
 		minetest.log("error", main_error_text.."new_max_value ("..new_max_value..") is smaller than 0!")
 	end

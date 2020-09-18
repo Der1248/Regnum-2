@@ -80,6 +80,9 @@ local no_destroy = {
 	["air"] = true,
 	["default:lava_source"] = true,
 	["default:lava_flowing"] = true,
+	["tutorial:stone_with_rot"] = true,
+	["tutorial:stone_with_blau"] = true,
+	["tutorial:stone_with_titan"] = true,
 }
 local function laser_shoot(player, range, particle_texture, sound)
 	local player_pos = player:getpos()
