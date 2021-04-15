@@ -932,7 +932,9 @@ function mob_class:do_env_damage()
 	end
 
 	local nodef = minetest.registered_nodes[self.standing_in]
-
+	if (pos) == nil then
+        return
+    end
 	pos.y = pos.y + 1 -- for particle effect position
 
 	-- water
@@ -1693,6 +1695,9 @@ function mob_class:general_attack()
 	end
 
 	local s = self.object:get_pos()
+	if s == nil then
+	return
+    end
 	local objs = minetest.get_objects_inside_radius(s, self.view_range)
 
 	-- remove entities we aren't interested in
@@ -2711,7 +2716,7 @@ function mob_class:on_punch(hitter, tflp, tool_capabilities, dir)
 	end
 
 	-- add weapon wear
-	punch_interval = tool_capabilities.full_punch_interval or 1.4
+	--punch_interval = tool_capabilities.full_punch_interval or 1.4
 
 	-- toolrank support
 	local wear = floor((punch_interval / 75) * 9000)
@@ -2824,7 +2829,11 @@ function mob_class:on_punch(hitter, tflp, tool_capabilities, dir)
 
 		-- use tool knockback value or default
 		kb = tool_capabilities.damage_groups["knockback"] or kb -- (kb * 1.5)
-
+		
+		if kb > 10 then
+			kb = 10
+		end
+		
 		self.object:set_velocity({
 			x = dir.x * kb,
 			y = up,
@@ -3221,7 +3230,7 @@ function mob_class:on_step(dtime)
 			if minetest.get_player_by_name(self.owner) then
 				local inv = minetest.get_player_by_name(self.owner):get_inventory()
 				inv:set_size("knight",8)
-				for _,object in ipairs(minetest.env:get_objects_inside_radius(pos, 15)) do
+				for _,object in ipairs(minetest.get_objects_inside_radius(pos, 15)) do
 					if not object:is_player() and object:get_luaentity() and object:get_luaentity().name == "__builtin:item" then
 						if inv and inv:room_for_item("knight", ItemStack(object:get_luaentity().itemstring)) then
 							if ItemStack(object:get_luaentity().itemstring):get_name() == "tutorial:geschenkpapier" or ItemStack(object:get_luaentity().itemstring):get_name() == "tutorial:geschenkpapier_death" or ItemStack(object:get_luaentity().itemstring):get_name() == "tutorial:dna_string" then
