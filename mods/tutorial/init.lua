@@ -6,7 +6,7 @@ minetest.register_on_joinplayer(function(player)
 		offset = {x=0, y=10},
 		alignment = {x=1, y=0},
 		number = 0xFFFFFF ,
-		text = "For Minetest 	  :  5.1.x",
+		text = "For Minetest 	  :  5.2.0",
 	})
 	player:hud_add({
 		hud_elem_type = "text",
@@ -14,7 +14,7 @@ minetest.register_on_joinplayer(function(player)
 		offset = {x=0, y=30},
 		alignment = {x=1, y=0},
 		number = 0xFFFFFF ,
-		text = "Game Version	 :  1.2.0",
+		text = "Game Version	 :  1.3.0",
 	})
 end)
 
@@ -30,6 +30,29 @@ dofile(minetest.get_modpath("tutorial").."/other.lua")
 dofile(minetest.get_modpath("tutorial").."/alias.lua")
 
 --v.0.1.0+
+local backward = {}
+backward.get_formspec = function(player, pos)
+    if player == nil then
+        return
+    end
+	local player_inv = player:get_inventory()
+	player_inv:set_size("backward", 1)
+	formspec = "size[8,7.5]"
+		.."button[0,0;2,0.5;cr;Back]"
+		.."button[2,0;2,0.5;main;Main]"
+        .."background[8,7.5;1,1;gui_formbg.png;true]"
+        .."listcolors[#00000069;#5A5A5A;#141318;#30434C;#FFF]"
+        .."bgcolor[#080808BB;true]"
+        .."button[3,2.6;2,0.5;backwardcra;Get items back]"
+        .."list[current_player;main;0,3.75;8,4;]"
+        .."list[current_player;backward;3.5,1;1,1;]"
+        .."listring[current_player;main]"
+		.."listring[current_player;backward]"
+		.."label[5,0.7;You can get your items back from:]"
+		.."label[5,1.0;Molestick lv.1-4]"
+	return formspec		
+end
+
 minetest.register_craft({
         output = "tutorial:spawn_egg",
         recipe = {
@@ -115,6 +138,36 @@ minetest.register_node("tutorial:trophy_year1", {
 		type = "fixed",
 		fixed = { -0.21, -0.5, -0.125, 0.2725, 0.125, 0.1875 }
 	}
+})
+minetest.register_craft({
+    output = 'tutorial:superheart4',
+    recipe = {
+        {'tutorial:whiteblock6', 'tutorial:thunder', 'tutorial:blackblock6'},
+        {'tutorial:whiteblock6', 'tutorial:superheart3', 'tutorial:blackblock6'},
+        {'tutorial:whiteblock6', 'tutorial:thunder', 'tutorial:blackblock6'},
+    }
+})
+minetest.register_craft({
+    output = 'tutorial:superheart3',
+    recipe = {
+        {'tutorial:whiteblock6', 'tutorial:thunder', 'tutorial:blackblock6'},
+        {'tutorial:whiteblock6', 'tutorial:superheart2', 'tutorial:blackblock6'},
+        {'tutorial:whiteblock6', 'tutorial:thunder', 'tutorial:blackblock6'},
+    }
+})
+minetest.register_craft({
+    output = 'tutorial:superheart2',
+    recipe = {
+        {'tutorial:whiteblock5', 'tutorial:thunder', 'tutorial:blackblock5'},
+        {'tutorial:whiteblock5', 'tutorial:superheart1', 'tutorial:blackblock5'},
+        {'tutorial:whiteblock5', 'tutorial:thunder', 'tutorial:blackblock5'},
+    }
+})
+minetest.register_craft({
+    output = 'tutorial:superheart1',
+    recipe = {
+        {'tutorial:zauberstab9', 'tutorial:cloudheart_mega25', 'tutorial:swored_zauber9'},
+    }
 })
 minetest.register_craft({
     output = 'tutorial:cloudheart_mega25',
@@ -485,51 +538,23 @@ minetest.register_craft({
 
 minetest.register_on_joinplayer(function(player)
 	local stack = player:get_inventory():get_stack("heart", 1)
-	if stack:get_name() == "tutorial:heart" then
-		player:set_properties({hp_max = 20})
-	elseif stack:get_name() == "tutorial:heart_mega1" then
-		player:set_properties({hp_max = 21})
-	elseif stack:get_name() == "tutorial:heart_mega2" then
-		player:set_properties({hp_max = 22})
-	elseif stack:get_name() == "tutorial:heart_mega3" then
-		player:set_properties({hp_max = 23})
-	elseif stack:get_name() == "tutorial:heart_mega4" then
-		player:set_properties({hp_max = 24})
-	elseif stack:get_name() == "tutorial:heart_mega5" then
-		player:set_properties({hp_max = 25})
-	elseif stack:get_name() == "tutorial:heart_mega6" then
-		player:set_properties({hp_max = 26})
-	elseif stack:get_name() == "tutorial:heart_mega7" then
-		player:set_properties({hp_max = 27})
-	elseif stack:get_name() == "tutorial:heart_mega8" then
-		player:set_properties({hp_max = 28})
-	elseif stack:get_name() == "tutorial:heart_mega9" then
-		player:set_properties({hp_max = 29})
-	elseif stack:get_name() == "tutorial:heart_mega10" then
-		player:set_properties({hp_max = 30})
-	elseif stack:get_name() == "tutorial:heart_mega11" then
-		player:set_properties({hp_max = 31})
-	elseif stack:get_name() == "tutorial:heart_mega12" then
-		player:set_properties({hp_max = 32})
-	elseif stack:get_name() == "tutorial:heart_mega13" then
-		player:set_properties({hp_max = 33})
-	elseif stack:get_name() == "tutorial:heart_mega14" then
-		player:set_properties({hp_max = 34})
-	elseif stack:get_name() == "tutorial:heart_mega15" then
-		player:set_properties({hp_max = 35})
-	elseif stack:get_name() == "tutorial:heart_mega16" then
-		player:set_properties({hp_max = 36})
-	elseif stack:get_name() == "tutorial:heart_mega17" then
-		player:set_properties({hp_max = 37})
-	elseif stack:get_name() == "tutorial:heart_mega18" then
-		player:set_properties({hp_max = 38})
-	elseif stack:get_name() == "tutorial:heart_mega19" then
-		player:set_properties({hp_max = 39})
-	elseif stack:get_name() == "tutorial:heart_mega20" then
-		player:set_properties({hp_max = 40})
-	else
-		player:set_properties({hp_max = 20})
+	local new_max_hp = 20
+	for i=1,20 do
+		if stack:get_name() == "tutorial:heart_mega"..i then
+			new_max_hp = 20+i
+		end
 	end
+	for i=1,25 do
+		if stack:get_name() == "tutorial:cloudheart_mega"..i then
+			new_max_hp = 40+i
+		end
+	end
+	for i=1,4 do
+		if stack:get_name() == "tutorial:superheart"..i then
+			new_max_hp = 65+i
+		end
+	end
+	player:set_properties({hp_max = new_max_hp})
 	local hpnum = player:get_attribute("hpnum")
 	if hpnum then
 		player:set_hp(hpnum)
@@ -597,6 +622,11 @@ minetest.register_globalstep(function(dtime)
 					new_max_hp = 40+i
 				end
 			end
+			for i=1,4 do
+				if stack:get_name() == "tutorial:superheart"..i then
+					new_max_hp = 65+i
+				end
+			end
 			if player:get_properties().hp_max > new_max_hp and player:get_hp() > new_max_hp then
 				player:set_hp(new_max_hp)
 			end
@@ -621,7 +651,7 @@ for i=1,20 do
 		stack_max = 1,
     })
 end
-for i=1,24 do
+for i=1,25 do
     minetest.register_craftitem("tutorial:cloudheart_mega"..i, {
         description = "Cloudheart lv."..i.."\nHeart-lv."..(i+20),
 	    inventory_image = "tutorial_cloudheart_mega"..i..".png",
@@ -629,9 +659,17 @@ for i=1,24 do
 		stack_max = 1,
     })
 end
-minetest.register_craftitem("tutorial:cloudheart_mega25", {
-	description = "Cloudheart lv.25\nHeart-lv.45",
-	inventory_image = "tutorial_cloudheart_mega25.png",
+for i=1,3 do
+    minetest.register_craftitem("tutorial:superheart"..i, {
+        description = "Superheart lv."..i.."\nHeart-lv."..(i+45),
+	    inventory_image = "tutorial_superheart"..i..".png",
+		groups = {not_in_creative_inventory=1},
+		stack_max = 1,
+    })
+end
+minetest.register_craftitem("tutorial:superheart4", {
+	description = "Superheart lv.4\nHeart-lv.49",
+	inventory_image = "tutorial_superheart4.png",
 	stack_max = 1,
 })
 for i=1,29 do
@@ -642,18 +680,28 @@ for i=1,29 do
     })
 end
 minetest.register_craftitem("tutorial:colorstick1", {
-        description = "Colorstick lv.1\nturns black in white ore and back",
-	    inventory_image = "tutorial_colorstick1.png",
-		on_use = function(itemstack, user, pointed_thing)
-			if pointed_thing.under then
-				local node = minetest.get_node(pointed_thing.under)
-				if node.name == "tutorial:stone_with_white" then
-					minetest.set_node(pointed_thing.under,{name="tutorial:stone_with_black"})
-				elseif node.name == "tutorial:stone_with_black" then
-					minetest.set_node(pointed_thing.under,{name="tutorial:stone_with_white"})
-				end
+	description = "Colorstick lv.1\nturns black in white ore and back",
+	inventory_image = "tutorial_colorstick1.png",
+	on_use = function(itemstack, user, pointed_thing)
+		if pointed_thing.under then
+			local node = minetest.get_node(pointed_thing.under)
+			if node.name == "tutorial:stone_with_white" then
+				minetest.set_node(pointed_thing.under,{name="tutorial:stone_with_black"})
+			elseif node.name == "tutorial:stone_with_black" then
+				minetest.set_node(pointed_thing.under,{name="tutorial:stone_with_white"})
 			end
-		end,
+		end
+	end,
+})
+minetest.register_craft({
+    output = 'tutorial:xraystick1',
+    recipe = {
+        {'tutorial:coin_silver', 'tutorial:cloudentverner21', 'tutorial:coin_silver'},
+        {'tutorial:coin_silver', 'tutorial:coin_silver', 'tutorial:coin_silver'},
+        {'', 'tutorial:coin_silver', ''},
+        {'', 'tutorial:coin_silver', ''},
+        {'', 'tutorial:coin_silver', ''},
+    }
 })
 minetest.register_craft({
     output = 'tutorial:molestick1',
@@ -705,112 +753,25 @@ minetest.register_craft({
         {'tutorial:coin_bronze', 'tutorial:coin_bronze', 'tutorial:coin_bronze', 'tutorial:coin_bronze', 'tutorial:coin_bronze'},
     }
 })
-pep = {}
-pep.moles = {}
-function pep.enable_mole_mode(playername)
-	pep.moles[playername] = true
-end
+	
+minetest.register_craftitem("tutorial:xraystick1", {
+    description = "Xraystick lv.1",
+    inventory_image = "tutorial_xraystick1.png",
+    stack_max = 1,
+	groups = {},
+    on_use = function(itemstack, user, pointed_thing)
+        local playername = user:get_player_name()
+        local player_inv = user:get_inventory()
+        local privs = minetest.get_player_privs(playername)
+        if player_inv:get_stack("xray", 1):get_count() == 0 then
+            local k = 5
+            playereffects.apply_effect_type("xray", 10, user)
+            player_inv:set_stack("xray", 1, "default:dirt "..(k+12))
+        end
+        return itemstack
+    end,
+})
 
-function pep.disable_mole_mode(playername)
-	pep.moles[playername] = false
-end
-
-function pep.yaw_to_vector(yaw)
-	local tau = math.pi*2
-
-	yaw = yaw % tau
-	if yaw < tau/8 then
-		return { x=0, y=0, z=1}
-	elseif yaw < (3/8)*tau then
-		return { x=-1, y=0, z=0 }
-	elseif yaw < (5/8)*tau then
-		return { x=0, y=0, z=-1 }
-	elseif yaw < (7/8)*tau then
-		return { x=1, y=0, z=0 }
-	else
-		return { x=0, y=0, z=1}
-	end
-end
-
-function pep.moledig(playername)
-	local player = minetest.get_player_by_name(playername)
-
-	local yaw = player:get_look_yaw()
-	-- fix stupid oddity of Minetest, adding pi/2 to the actual player's look yaw...
-	-- TODO: Remove this code as soon as Minetest fixes this.
-	yaw = yaw - math.pi/2
-
-	local pos = vector.round(player:getpos())
-
-	local v = pep.yaw_to_vector(yaw)
-
-	local digpos1 = vector.add(pos, v)
-	local digpos2 = { x = digpos1.x, y = digpos1.y+1, z = digpos1.z }
-
-	local try_dig = function(pos)
-		local n = minetest.get_node(pos)
-		local ndef = minetest.registered_nodes[n.name]
-		if ndef.walkable and ndef.diggable then
-			if ndef.can_dig ~= nil then
-				if ndef.can_dig() then
-					return true
-				else
-					return false
-				end
-			else
-				return true
-			end
-		else
-			return false
-		end
-	end
-
-	local dig = function(pos)
-		if try_dig(pos) then
-			local n = minetest.get_node(pos)
-			local ndef = minetest.registered_nodes[n.name]
-			if ndef.sounds ~= nil then
-				minetest.sound_play(ndef.sounds.dug, { pos = pos })
-			end
-			-- TODO: Replace this code as soon Minetest removes support for this function
-			local drops = minetest.get_node_drops(n.name, "default:pick_steel")
-			minetest.dig_node(pos)
-			local inv = player:get_inventory()
-			local leftovers = {}
-			for i=1,#drops do
-				table.insert(leftovers, inv:add_item("main", drops[i]))
-			end
-			for i=1,#leftovers do
-				minetest.add_item(pos, leftovers[i])
-			end
-		end
-	end
-
-	dig(digpos1)
-	dig(digpos2)
-end
-
-pep.timer = 0
-
-minetest.register_globalstep(function(dtime)
-	pep.timer = pep.timer + dtime
-	if pep.timer > 0.5 then
-		for playername, is_mole in pairs(pep.moles) do
-			if is_mole then
-				pep.moledig(playername)
-			end
-		end
-		pep.timer = 0
-	end
-end)
-playereffects.register_effect_type("mole", "Mole mode", "pep_mole.png", {"autodig"},
-	function(player)
-		pep.enable_mole_mode(player:get_player_name())
-	end,
-	function(effect, player)
-		pep.disable_mole_mode(player:get_player_name())
-	end,
-    false,false)
 minetest.register_craftitem("tutorial:molestick1", {
     description = "Molestick lv.1",
     inventory_image = "tutorial_superzauberstab1.png",
@@ -822,7 +783,7 @@ minetest.register_craftitem("tutorial:molestick1", {
         local privs = minetest.get_player_privs(playername)
         if player_inv:get_stack("mole", 1):get_count() == 0 then
             local k = 5
-            playereffects.apply_effect_type("mole", 10, user)
+            playereffects.apply_effect_type("pepmole", 10, user)
             player_inv:set_stack("mole", 1, "default:dirt "..(k+12))
         end
         return itemstack
@@ -839,7 +800,7 @@ minetest.register_craftitem("tutorial:molestick2", {
         local privs = minetest.get_player_privs(playername)
         if player_inv:get_stack("mole", 1):get_count() == 0 then
             local k = 5
-            playereffects.apply_effect_type("mole", 20, user)
+            playereffects.apply_effect_type("pepmole", 20, user)
             player_inv:set_stack("mole", 1, "default:dirt "..(k+22))
         end
         return itemstack
@@ -856,7 +817,7 @@ minetest.register_craftitem("tutorial:molestick3", {
         local privs = minetest.get_player_privs(playername)
         if player_inv:get_stack("mole", 1):get_count() == 0 then
             local k = 5
-            playereffects.apply_effect_type("mole", 30, user)
+            playereffects.apply_effect_type("pepmole", 30, user)
             player_inv:set_stack("mole", 1, "default:dirt "..(k+32))
         end
         return itemstack
@@ -873,7 +834,7 @@ minetest.register_craftitem("tutorial:molestick4", {
         local privs = minetest.get_player_privs(playername)
         if player_inv:get_stack("mole", 1):get_count() == 0 then
             local k = 5
-            playereffects.apply_effect_type("mole", 40, user)
+            playereffects.apply_effect_type("pepmole", 40, user)
             player_inv:set_stack("mole", 1, "default:dirt "..(k+42))
         end
         return itemstack
@@ -889,7 +850,7 @@ minetest.register_craftitem("tutorial:molestick5", {
         local privs = minetest.get_player_privs(playername)
         if player_inv:get_stack("mole", 1):get_count() == 0 then
             local k = 5
-            playereffects.apply_effect_type("mole", 50, user)
+            playereffects.apply_effect_type("pepmole", 50, user)
             player_inv:set_stack("mole", 1, "default:dirt "..(k+52))
         end
         return itemstack
@@ -906,7 +867,7 @@ minetest.register_node("tutorial:stone_with_precious_metal", {
 	description = "Precious Metal ore",
 	tiles = {"default_stone.png^tutorial_precious_metal_ore.png"},
 	is_ground_content = true,
-	groups = {cracky=13,xpb=1},
+	groups = {cracky=13,xp=1},
 	drop = 'tutorial:precious_metal',
 	sounds = default.node_sound_stone_defaults(),
 })
@@ -924,10 +885,20 @@ minetest.register_craftitem("tutorial:coin_bronze", {
 	inventory_image = "tutorial_coin_bronze.png",
 	stack_max = 9999,
 })
+minetest.register_craftitem("tutorial:coin_silver", {
+    description = "Coin silver (very rare)",
+	inventory_image = "tutorial_coin_silver.png",
+	stack_max = 9999,
+})
 for i = 1, 100, 1 do
     minetest.register_node("tutorial:level"..i.."_bronze",{
 	    tiles  = {"tutorial_level"..i..".png^tutorial_level_bronze.png"},
 	    description = "You are now in Level bronze "..i,
+	    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,not_in_creative_inventory=1},
+    })
+	minetest.register_node("tutorial:level"..i.."_silver",{
+	    tiles  = {"tutorial_level"..i..".png^tutorial_level_silver.png"},
+	    description = "You are now in Level silver "..i,
 	    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,not_in_creative_inventory=1},
     })
 end
@@ -936,12 +907,37 @@ minetest.register_node("tutorial:levelMAX_bronze",{
 	description = "You are now in Level bronze MAX",
 	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2},
 })
+minetest.register_node("tutorial:levelMAX_silver",{
+	tiles  = {"tutorial_levelMAX.png^tutorial_level_silver.png"},
+	description = "You are now in Level silver MAX",
+	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2},
+})
 minetest.register_craft({
     output = 'tutorial:regnumwings1',
     recipe = {
         {'', '', 'tutorial:regnum', '', ''},
 		{'', '', 'tutorial:bottleSS', '', ''},
 		{'tutorial:regnum', 'tutorial:bottleSS', 'tutorial:superlegendwings1', 'tutorial:bottleSS', 'tutorial:regnum'},
+		{'', '', 'tutorial:bottleSS', '', ''},
+		{'', '', 'tutorial:regnum', '', ''},
+    }
+})
+minetest.register_craft({
+    output = 'tutorial:regnumwings2',
+    recipe = {
+        {'', '', 'tutorial:regnum', '', ''},
+		{'', '', 'tutorial:bottleSS', '', ''},
+		{'tutorial:regnum', 'tutorial:bottleSS', 'tutorial:superlegendwings2', 'tutorial:bottleSS', 'tutorial:regnum'},
+		{'', '', 'tutorial:bottleSS', '', ''},
+		{'', '', 'tutorial:regnum', '', ''},
+    }
+})
+minetest.register_craft({
+    output = 'tutorial:regnumwings3',
+    recipe = {
+        {'', '', 'tutorial:regnum', '', ''},
+		{'', '', 'tutorial:bottleSS', '', ''},
+		{'tutorial:regnum', 'tutorial:bottleSS', 'tutorial:superlegendwings3', 'tutorial:bottleSS', 'tutorial:regnum'},
 		{'', '', 'tutorial:bottleSS', '', ''},
 		{'', '', 'tutorial:regnum', '', ''},
     }
@@ -1865,14 +1861,6 @@ playereffects.register_effect_type("fly", "Fly mode available", "tutorial_wings_
     end,
     false, false
 )
-playereffects.register_effect_type("pepgrav0", "No gravity", "pep_grav0.png", {"gravity"},
-	function(player)
-		player:set_physics_override({gravity=0.2})
-	end,
-	function(effect, player)
-		player:set_physics_override({gravity=1})
-	end
-)
 minetest.register_craftitem("tutorial:wings", {
     description = "Wings\nWings-lv.0",
     inventory_image = "tutorial_wings.png",
@@ -2158,154 +2146,166 @@ end
 
 
 minetest.register_craftitem("tutorial:superlegendwings1", {
-    description = "Superlegendwings Mode 1. (fly and normal gravity)\nWings-lv.122",
+    description = "Superlegendwings Mode 1 (fly and normal gravity)\nWings-lv.122",
     inventory_image = "tutorial_superlegendwings.png^technic_tool_mode1.png",
     wield_image = "tutorial_superlegendwings.png",
     stack_max = 1,
 	groups = {not_in_creative_inventory=1},
-    on_use = function(itemstack, user, pointed_thing)
+	on_secondary_use = function(itemstack, user, pointed_thing)
         local keys = user:get_player_control()
         if keys["sneak"] == true then
             itemstack:set_name("tutorial:superlegendwings2")
-        else
-            local playername = user:get_player_name()
-            local player_inv = user:get_inventory()
-            local privs = minetest.get_player_privs(playername)
-            if privs.fly == true then
-            else
-                if player_inv:get_stack("wings", 1):get_count() == 0 then
-                    local k = math.ceil((122*0.5))
-                    playereffects.apply_effect_type("fly", 122*0.5, user)
-                    player_inv:set_stack("wings", 1, "default:dirt "..(k+12))
-                end
-            end
         end
+        return itemstack
+    end,
+    on_use = function(itemstack, user, pointed_thing)
+		local playername = user:get_player_name()
+		local player_inv = user:get_inventory()
+		local privs = minetest.get_player_privs(playername)
+		if privs.fly == true then
+		else
+			if player_inv:get_stack("wings", 1):get_count() == 0 then
+				local k = math.ceil((122*0.5))
+				playereffects.apply_effect_type("fly", 122*0.5, user)
+				player_inv:set_stack("wings", 1, "default:dirt "..(k+12))
+			end
+		end
         return itemstack
     end,
 })
 minetest.register_craftitem("tutorial:superlegendwings2", {
-    description = "Superlegendwings Mode 2. (no fly and low gravity)\nWings-lv.122",
+    description = "Superlegendwings Mode 2 (no fly and low gravity)\nWings-lv.122",
     inventory_image = "tutorial_superlegendwings.png^technic_tool_mode2.png",
     wield_image = "tutorial_superlegendwings.png",
     stack_max = 1,
 	groups = {not_in_creative_inventory=1},
-    on_use = function(itemstack, user, pointed_thing)
+	on_secondary_use = function(itemstack, user, pointed_thing)
         local keys = user:get_player_control()
         if keys["sneak"] == true then
             itemstack:set_name("tutorial:superlegendwings3")
-        else
-            local playername = user:get_player_name()
-            local player_inv = user:get_inventory()
-            local privs = minetest.get_player_privs(playername)
-            if player_inv:get_stack("wings", 1):get_count() == 0 then
-                local k = math.ceil((122*0.5))
-                playereffects.apply_effect_type("pepgrav0", 122*0.5, user)
-                player_inv:set_stack("wings", 1, "default:dirt "..(k+12))
-            end
         end
+        return itemstack
+    end,
+    on_use = function(itemstack, user, pointed_thing)
+		local playername = user:get_player_name()
+		local player_inv = user:get_inventory()
+		local privs = minetest.get_player_privs(playername)
+		if player_inv:get_stack("wings", 1):get_count() == 0 then
+			local k = math.ceil((122*0.5))
+			playereffects.apply_effect_type("pepgrav0", 122*0.5, user)
+			player_inv:set_stack("wings", 1, "default:dirt "..(k+12))
+		end
         return itemstack
     end,
 })
 minetest.register_craftitem("tutorial:superlegendwings3", {
-    description = "Superlegendwings Mode 3. (fly and low gravity)\nWings-lv.122",
+    description = "Superlegendwings Mode 3 (fly and low gravity)\nWings-lv.122",
     inventory_image = "tutorial_superlegendwings.png^technic_tool_mode3.png",
     wield_image = "tutorial_superlegendwings.png",
     stack_max = 1,
 	groups = {not_in_creative_inventory=1},
-    on_use = function(itemstack, user, pointed_thing)
+	on_secondary_use = function(itemstack, user, pointed_thing)
         local keys = user:get_player_control()
         if keys["sneak"] == true then
             itemstack:set_name("tutorial:superlegendwings1")
-        else
-            local playername = user:get_player_name()
-            local player_inv = user:get_inventory()
-            local privs = minetest.get_player_privs(playername)
-            if player_inv:get_stack("wings", 1):get_count() == 0 then
-                local k = math.ceil((122*0.5))
-                playereffects.apply_effect_type("pepgrav0", 122*0.5, user)
-                if privs.fly == true then
-                else
-                    playereffects.apply_effect_type("fly", 122*0.5, user)
-                end
-                player_inv:set_stack("wings", 1, "default:dirt "..(k+12))
-            end
         end
+        return itemstack
+    end,
+    on_use = function(itemstack, user, pointed_thing)
+		local playername = user:get_player_name()
+		local player_inv = user:get_inventory()
+		local privs = minetest.get_player_privs(playername)
+		if player_inv:get_stack("wings", 1):get_count() == 0 then
+			local k = math.ceil((122*0.5))
+			playereffects.apply_effect_type("pepgrav0", 122*0.5, user)
+			if privs.fly == true then
+			else
+				playereffects.apply_effect_type("fly", 122*0.5, user)
+			end
+			player_inv:set_stack("wings", 1, "default:dirt "..(k+12))
+		end
         return itemstack
     end,
 })
 
 minetest.register_craftitem("tutorial:regnumwings1", {
-    description = "Regnumwings Mode 1. No Gravity\nWings-lv.MAX",
+    description = "Regnumwings Mode 1 (fly and normal gravity)\nWings-lv.MAX",
     inventory_image = "tutorial_regnumwings.png^technic_tool_mode1.png",
     wield_image = "tutorial_regnumwings.png",
     stack_max = 1,
-    on_use = function(itemstack, user, pointed_thing)
+	on_secondary_use = function(itemstack, user, pointed_thing)
         local keys = user:get_player_control()
         if keys["sneak"] == true then
             itemstack:set_name("tutorial:regnumwings2")
-        else
-            local playername = user:get_player_name()
-            local player_inv = user:get_inventory()
-            local privs = minetest.get_player_privs(playername)
-            if privs.fly == true then
-            else
-                if player_inv:get_stack("wings", 1):get_count() == 0 then
-                    local k = math.ceil((150*0.5))
-                    playereffects.apply_effect_type("fly", 150*0.5, user)
-                    player_inv:set_stack("wings", 1, "default:dirt "..(k+12))
-                end
-            end
         end
+        return itemstack
+    end,
+    on_use = function(itemstack, user, pointed_thing)
+		local playername = user:get_player_name()
+		local player_inv = user:get_inventory()
+		local privs = minetest.get_player_privs(playername)
+		if privs.fly == true then
+		else
+			if player_inv:get_stack("wings", 1):get_count() == 0 then
+				local k = math.ceil((150*0.5))
+				playereffects.apply_effect_type("fly", 150*0.5, user)
+				player_inv:set_stack("wings", 1, "default:dirt "..(k+12))
+			end
+		end
         return itemstack
     end,
 })
 minetest.register_craftitem("tutorial:regnumwings2", {
-    description = "Regnumwings Mode 2. Only Gravity\nWings-lv.MAX",
+    description = "Regnumwings Mode 2 (no fly and low gravity)\nWings-lv.MAX",
     inventory_image = "tutorial_regnumwings.png^technic_tool_mode2.png",
     wield_image = "tutorial_regnumwings.png",
     stack_max = 1,
 	groups = {not_in_creative_inventory=1},
-    on_use = function(itemstack, user, pointed_thing)
+	on_secondary_use = function(itemstack, user, pointed_thing)
         local keys = user:get_player_control()
         if keys["sneak"] == true then
             itemstack:set_name("tutorial:regnumwings3")
-        else
-            local playername = user:get_player_name()
-            local player_inv = user:get_inventory()
-            local privs = minetest.get_player_privs(playername)
-            if player_inv:get_stack("wings", 1):get_count() == 0 then
-                local k = math.ceil((150*0.5))
-                playereffects.apply_effect_type("pepgrav0", 150*0.5, user)
-                player_inv:set_stack("wings", 1, "default:dirt "..(k+12))
-            end
         end
+        return itemstack
+    end,
+    on_use = function(itemstack, user, pointed_thing)
+		local playername = user:get_player_name()
+		local player_inv = user:get_inventory()
+		local privs = minetest.get_player_privs(playername)
+		if player_inv:get_stack("wings", 1):get_count() == 0 then
+			local k = math.ceil((150*0.5))
+			playereffects.apply_effect_type("pepgrav0", 150*0.5, user)
+			player_inv:set_stack("wings", 1, "default:dirt "..(k+12))
+		end
         return itemstack
     end,
 })
 minetest.register_craftitem("tutorial:regnumwings3", {
-    description = "Regnumwings Mode 3. Fly and Gravity\nWings-lv.MAX",
+    description = "Regnumwings Mode 3 (fly and low gravity)\nWings-lv.MAX",
     inventory_image = "tutorial_regnumwings.png^technic_tool_mode3.png",
     wield_image = "tutorial_regnumwings.png",
     stack_max = 1,
 	groups = {not_in_creative_inventory=1},
-    on_use = function(itemstack, user, pointed_thing)
+	on_secondary_use = function(itemstack, user, pointed_thing)
         local keys = user:get_player_control()
         if keys["sneak"] == true then
             itemstack:set_name("tutorial:regnumwings1")
-        else
-            local playername = user:get_player_name()
-            local player_inv = user:get_inventory()
-            local privs = minetest.get_player_privs(playername)
-            if player_inv:get_stack("wings", 1):get_count() == 0 then
-                local k = math.ceil((150*0.5))
-                playereffects.apply_effect_type("pepgrav0", 150*0.5, user)
-                if privs.fly == true then
-                else
-                    playereffects.apply_effect_type("fly", 150*0.5, user)
-                end
-                player_inv:set_stack("wings", 1, "default:dirt "..(k+12))
-            end
         end
+        return itemstack
+    end,
+    on_use = function(itemstack, user, pointed_thing)
+		local playername = user:get_player_name()
+		local player_inv = user:get_inventory()
+		local privs = minetest.get_player_privs(playername)
+		if player_inv:get_stack("wings", 1):get_count() == 0 then
+			local k = math.ceil((150*0.5))
+			playereffects.apply_effect_type("pepgrav0", 150*0.5, user)
+			if privs.fly == true then
+			else
+				playereffects.apply_effect_type("fly", 150*0.5, user)
+			end
+			player_inv:set_stack("wings", 1, "default:dirt "..(k+12))
+		end
         return itemstack
     end,
 })
@@ -2514,6 +2514,7 @@ minetest.register_on_joinplayer(function(player)
 	local player_inv = player:get_inventory()
     player_inv:set_size("wings", 1)
     player_inv:set_size("mole", 1)
+	player_inv:set_size("xray", 1)
     local d = 0
     function af2()
         minetest.after(1, function()
@@ -2525,11 +2526,14 @@ minetest.register_on_joinplayer(function(player)
             if mole > 0 then
                 player_inv:set_stack("mole", 1, "default:dirt "..(mole-1))
             end
+			local xray = player_inv:get_stack("xray", 1):get_count()
+            if xray > 0 then
+                player_inv:set_stack("xray", 1, "default:dirt "..(xray-1))
+            end
             af2()
         end)
     end
     af2()
-
 end)
 minetest.override_item("default:obsidian", {
 	description = "Obsidian Lv.1",
@@ -2538,10 +2542,10 @@ minetest.override_item("default:diamondblock", {
 	description = "Diamond block lv.1",
 })
 minetest.register_craftitem("tutorial:wallplacer5_1", {
-	description = "Wallplacer lv.MAX",
+	description = "Wallplacer lv.MAX Mode 1 (place 3x3 wall)",
 	inventory_image = "tutorial_block_placer5.png^technic_tool_mode1.png",
     wield_image = "tutorial_block_placer5.png",
-    on_use = function(itemstack, user, pointed_thing)
+    on_secondary_use  = function(itemstack, user, pointed_thing)
         local keys = user:get_player_control()
         if keys["sneak"] == true then
             itemstack:set_name("tutorial:wallplacer5_2")
@@ -2660,11 +2664,11 @@ minetest.register_craftitem("tutorial:wallplacer5_1", {
 	end,
 })
 minetest.register_craftitem("tutorial:wallplacer5_2", {
-	description = "Wallplacer lv.MAX",
+	description = "Wallplacer lv.MAX Mode 2 (place 5x5 wall)",
 	inventory_image = "tutorial_block_placer5.png^technic_tool_mode2.png",
     wield_image = "tutorial_block_placer5.png",
 	groups = {not_in_creative_inventory=1},
-    on_use = function(itemstack, user, pointed_thing)
+    on_secondary_use  = function(itemstack, user, pointed_thing)
         local keys = user:get_player_control()
         if keys["sneak"] == true then
             itemstack:set_name("tutorial:wallplacer5_3")
@@ -2783,11 +2787,11 @@ minetest.register_craftitem("tutorial:wallplacer5_2", {
 	end,
 })
 minetest.register_craftitem("tutorial:wallplacer5_3", {
-	description = "Wallplacer lv.MAX",
+	description = "Wallplacer lv.MAX Mode 3 (place 7x7 wall)",
 	inventory_image = "tutorial_block_placer5.png^technic_tool_mode3.png",
     wield_image = "tutorial_block_placer5.png",
 	groups = {not_in_creative_inventory=1},
-    on_use = function(itemstack, user, pointed_thing)
+    on_secondary_use  = function(itemstack, user, pointed_thing)
         local keys = user:get_player_control()
         if keys["sneak"] == true then
             itemstack:set_name("tutorial:wallplacer5_4")
@@ -2906,11 +2910,11 @@ minetest.register_craftitem("tutorial:wallplacer5_3", {
 	end,
 })
 minetest.register_craftitem("tutorial:wallplacer5_4", {
-	description = "Wallplacer lv.MAX",
+	description = "Wallplacer lv.MAX Mode 4 (place 9x9 wall)",
 	inventory_image = "tutorial_block_placer5.png^technic_tool_mode4.png",
     wield_image = "tutorial_block_placer5.png",
 	groups = {not_in_creative_inventory=1},
-    on_use = function(itemstack, user, pointed_thing)
+    on_secondary_use  = function(itemstack, user, pointed_thing)
         local keys = user:get_player_control()
         if keys["sneak"] == true then
             itemstack:set_name("tutorial:wallplacer5_5")
@@ -3029,11 +3033,11 @@ minetest.register_craftitem("tutorial:wallplacer5_4", {
 	end,
 })
 minetest.register_craftitem("tutorial:wallplacer5_5", {
-	description = "Wallplacer lv.MAX",
+	description = "Wallplacer lv.MAX Mode 5 (place 11x11 wall)",
 	inventory_image = "tutorial_block_placer5.png^technic_tool_mode5.png",
     wield_image = "tutorial_block_placer5.png",
 	groups = {not_in_creative_inventory=1},
-    on_use = function(itemstack, user, pointed_thing)
+    on_secondary_use  = function(itemstack, user, pointed_thing)
         local keys = user:get_player_control()
         if keys["sneak"] == true then
             itemstack:set_name("tutorial:wallplacer5_1")
@@ -3152,10 +3156,10 @@ minetest.register_craftitem("tutorial:wallplacer5_5", {
 	end,
 })
 minetest.register_craftitem("tutorial:adminwallplacer_1", {
-	description = "Admin tool 9: Wallplacer",
+	description = "Admin tool 9: Wallplacer Mode 1 (place 3x3 wall)",
 	inventory_image = "tutorial_block_placerAdmin.png^technic_tool_mode1.png",
     wield_image = "tutorial_block_placerAdmin.png",
-    on_use = function(itemstack, user, pointed_thing)
+    on_secondary_use  = function(itemstack, user, pointed_thing)
         local keys = user:get_player_control()
         if keys["sneak"] == true then
             itemstack:set_name("tutorial:adminwallplacer_2")
@@ -3274,11 +3278,11 @@ minetest.register_craftitem("tutorial:adminwallplacer_1", {
 	end,
 })
 minetest.register_craftitem("tutorial:adminwallplacer_2", {
-	description = "Admin tool 9: Wallplacer",
+	description = "Admin tool 9: Wallplacer Mode 2 (place 5x5 wall)",
 	inventory_image = "tutorial_block_placerAdmin.png^technic_tool_mode2.png",
     wield_image = "tutorial_block_placerAdmin.png",
 	groups = {not_in_creative_inventory=1},
-    on_use = function(itemstack, user, pointed_thing)
+    on_secondary_use  = function(itemstack, user, pointed_thing)
         local keys = user:get_player_control()
         if keys["sneak"] == true then
             itemstack:set_name("tutorial:adminwallplacer_3")
@@ -3397,11 +3401,11 @@ minetest.register_craftitem("tutorial:adminwallplacer_2", {
 	end,
 })
 minetest.register_craftitem("tutorial:adminwallplacer_3", {
-	description = "Admin tool 9: Wallplacer",
+	description = "Admin tool 9: Wallplacer Mode 3 (place 7x7 wall)",
 	inventory_image = "tutorial_block_placerAdmin.png^technic_tool_mode3.png",
     wield_image = "tutorial_block_placerAdmin.png",
 	groups = {not_in_creative_inventory=1},
-    on_use = function(itemstack, user, pointed_thing)
+    on_secondary_use  = function(itemstack, user, pointed_thing)
         local keys = user:get_player_control()
         if keys["sneak"] == true then
             itemstack:set_name("tutorial:adminwallplacer_4")
@@ -3520,11 +3524,11 @@ minetest.register_craftitem("tutorial:adminwallplacer_3", {
 	end,
 })
 minetest.register_craftitem("tutorial:adminwallplacer_4", {
-	description = "Admin tool 9: Wallplacer",
+	description = "Admin tool 9: Wallplacer Mode 4 (place 9x9 wall)",
 	inventory_image = "tutorial_block_placerAdmin.png^technic_tool_mode4.png",
     wield_image = "tutorial_block_placerAdmin.png",
 	groups = {not_in_creative_inventory=1},
-    on_use = function(itemstack, user, pointed_thing)
+    on_secondary_use  = function(itemstack, user, pointed_thing)
         local keys = user:get_player_control()
         if keys["sneak"] == true then
             itemstack:set_name("tutorial:adminwallplacer_5")
@@ -3643,11 +3647,11 @@ minetest.register_craftitem("tutorial:adminwallplacer_4", {
 	end,
 })
 minetest.register_craftitem("tutorial:adminwallplacer_5", {
-	description = "Admin tool 9: Wallplacer",
+	description = "Admin tool 9: Wallplacer Mode 5 (place 11x11 wall)",
 	inventory_image = "tutorial_block_placerAdmin.png^technic_tool_mode5.png",
     wield_image = "tutorial_block_placerAdmin.png",
 	groups = {not_in_creative_inventory=1},
-    on_use = function(itemstack, user, pointed_thing)
+    on_secondary_use  = function(itemstack, user, pointed_thing)
         local keys = user:get_player_control()
         if keys["sneak"] == true then
             itemstack:set_name("tutorial:adminwallplacer_1")
@@ -3766,26 +3770,26 @@ minetest.register_craftitem("tutorial:adminwallplacer_5", {
 	end,
 })
 minetest.register_node("tutorial:legend_thunder", {
-			description = "Legend thunder",
-			drawtype = "plantlike",
-			tiles = {{
-				name="tutorial_legend_thunder.png",
-			}},
-			light_source = 12,
-			walkable = false,
-			buildable_to = true,
-			damage_per_second = 64,
-			drop = {},
-			groups = {dig_immediate=3},
-		})
-		minetest.register_abm({
-			nodenames = {"tutorial:legend_thunder"},
-			interval = 24,
-			chance = 1,
-			action = function(pos)
-				minetest.env:remove_node(pos)
-			end,
-		})
+	description = "Legend thunder",
+	drawtype = "plantlike",
+	tiles = {{
+		name="tutorial_legend_thunder.png",
+	}},
+	light_source = 12,
+	walkable = false,
+	buildable_to = true,
+	damage_per_second = 64,
+	drop = {},
+	groups = {dig_immediate=3},
+})
+minetest.register_abm({
+	nodenames = {"tutorial:legend_thunder"},
+	interval = 24,
+	chance = 1,
+	action = function(pos)
+		minetest.env:remove_node(pos)
+	end,
+})
 minetest.register_entity("tutorial:legendball", {
 	visual = "mesh",
 	visual_size = {x=5, y=5},
@@ -3863,30 +3867,7 @@ minetest.register_tool("tutorial:legendball", {
 	end,
 	light_source = 12,
 })
-minetest.register_craft({
-    output = 'tutorial:regnumgun2',
-    recipe = {
-        {'tutorial:regnumgun1'},
-    }
-})
-minetest.register_craft({
-    output = 'tutorial:regnumgun1',
-    recipe = {
-        {'tutorial:regnumgun2'},
-    }
-})
-minetest.register_craft({
-    output = 'tutorial:gun_admin1',
-    recipe = {
-        {'tutorial:gun_admin2'},
-    }
-})
-minetest.register_craft({
-    output = 'tutorial:gun_admin2',
-    recipe = {
-        {'tutorial:gun_admin1'},
-    }
-})
+
 for i = 123, 127 do
     local XTRAORES_TB = {
 	    physical = false,
@@ -3903,6 +3884,8 @@ for i = 123, 127 do
         local ki = 0
         if i == 0 then
             ki = 1
+        elseif i == 122 then
+            ki = 122
         elseif i == 123 then
             ki = 150
         elseif i == 124 then
@@ -3917,7 +3900,35 @@ for i = 123, 127 do
             ki = i
         end
         local l = 0
-        if i < 124 then
+        if i == 0 then
+            l = 1
+        elseif i < 21 then
+            l = 2
+        elseif i < 46 then
+            l = 3
+        elseif i < 50 then
+            l = 4
+        elseif i < 52 then
+            l = 5
+        elseif i < 64 then
+            l = 6
+        elseif i < 71 then
+            l = 7
+        elseif i < 76 then
+            l = 8
+        elseif i < 101 then
+            l = 9
+        elseif i < 102 then
+            l = 10
+        elseif i < 106 then
+            l = 11
+        elseif i < 116 then
+            l = 12
+        elseif i < 122 then
+            l = 13
+        elseif i < 123 then
+            l = 14
+        elseif i < 124 then
             l = 15
         elseif i < 125 then
             l = 14
@@ -3933,7 +3944,7 @@ for i = 123, 127 do
 		    for k, obj in pairs(objs) do
                 local damage = ki
 			    if obj:get_luaentity() ~= nil then
-				    if string.match(obj:get_luaentity().name, "monster") or string.match(obj:get_luaentity().name, "mobs_bat") or string.match(obj:get_luaentity().name, "mobs_birds") or string.match(obj:get_luaentity().name, "mobs_butterfly") or string.match(obj:get_luaentity().name, "mobs_crocs") or string.match(obj:get_luaentity().name, "mobs_fish") or string.match(obj:get_luaentity().name, "mobs_jellyfish") or string.match(obj:get_luaentity().name, "mobs_sharks") or string.match(obj:get_luaentity().name, "mobs_turtles") or string.match(obj:get_luaentity().name, "mummy") then
+					if string.match(obj:get_luaentity().name, "monster") or string.match(obj:get_luaentity().name, "mobs_bat") or string.match(obj:get_luaentity().name, "mobs_birds") or string.match(obj:get_luaentity().name, "mobs_butterfly") or string.match(obj:get_luaentity().name, "mobs_crocs") or string.match(obj:get_luaentity().name, "mobs_fish") or string.match(obj:get_luaentity().name, "mobs_jellyfish") or string.match(obj:get_luaentity().name, "mobs_sharks") or string.match(obj:get_luaentity().name, "mobs_turtles") or string.match(obj:get_luaentity().name, "mummy") then
 						if obj:get_luaentity().name ~= "tutorial:tb_"..i and obj:get_luaentity().name ~= "__builtin:item" then
 							obj:punch(self.object, 1.0, {full_punch_interval = 1.0, damage_groups= {fleshy = damage}}, nil)
 							minetest.sound_play("default_dig_cracky", {pos = self.lastpos, gain = 0.8})
@@ -4024,9 +4035,165 @@ for i = 123, 127 do
     end
     minetest.register_entity("tutorial:tb_"..i, XTRAORES_TB)
 end
+for i = 123, 127 do
+    local XTRAORES_TB2 = {
+	    physical = false,
+	    timer = 0,
+	    visual = "sprite",
+	    visual_size = {x=0.075, y=0.075,},
+	    textures = {'tutorial_titanium_shot.png'},
+	    lastpos= {},
+	    collisionbox = {0, 0, 0, 0, 0, 0},
+        metadata = "",
+    }
+    XTRAORES_TB2.on_step = function(self, dtime)
+	    self.timer = self.timer + dtime
+        local ki = 0
+        if i == 0 then
+            ki = 1
+        elseif i == 122 then
+            ki = 122
+        elseif i == 123 then
+            ki = 150
+        elseif i == 124 then
+            ki = 122
+        elseif i == 125 then
+            ki = 150
+        elseif i == 126 then
+            ki = 500
+        elseif i == 127 then
+            ki = 500
+        else
+            ki = i
+        end
+        local l = 0
+        if i == 0 then
+            l = 1
+        elseif i < 21 then
+            l = 2
+        elseif i < 46 then
+            l = 3
+        elseif i < 50 then
+            l = 4
+        elseif i < 52 then
+            l = 5
+        elseif i < 64 then
+            l = 6
+        elseif i < 71 then
+            l = 7
+        elseif i < 76 then
+            l = 8
+        elseif i < 101 then
+            l = 9
+        elseif i < 102 then
+            l = 10
+        elseif i < 106 then
+            l = 11
+        elseif i < 116 then
+            l = 12
+        elseif i < 122 then
+            l = 13
+        elseif i < 123 then
+            l = 14
+        elseif i < 124 then
+            l = 15
+        elseif i < 125 then
+            l = 14
+        elseif i < 126 then
+            l = 15
+        elseif i < 128 then
+            l = 20
+        end
+	    local pos = self.object:getpos()
+	    local node = minetest.get_node(pos)
+	    if self.timer > 0.08 then
+		    local objs = minetest.get_objects_inside_radius({x = pos.x, y = pos.y, z = pos.z}, l)
+		    for k, obj in pairs(objs) do
+                local damage = ki
+			    if obj:get_luaentity() ~= nil then
+					if string.match(obj:get_luaentity().name, "monster") or string.match(obj:get_luaentity().name, "mobs_bat") or string.match(obj:get_luaentity().name, "mobs_birds") or string.match(obj:get_luaentity().name, "mobs_butterfly") or string.match(obj:get_luaentity().name, "mobs_crocs") or string.match(obj:get_luaentity().name, "mobs_fish") or string.match(obj:get_luaentity().name, "mobs_jellyfish") or string.match(obj:get_luaentity().name, "mobs_sharks") or string.match(obj:get_luaentity().name, "mobs_turtles") or string.match(obj:get_luaentity().name, "mummy") then
+						if obj:get_luaentity().name ~= "tutorial:tb_"..i and obj:get_luaentity().name ~= "__builtin:item" then
+							obj:punch(self.object, 1.0, {full_punch_interval = 1.0, damage_groups= {fleshy = damage}}, nil)
+							minetest.sound_play("default_dig_cracky", {pos = self.lastpos, gain = 0.8})
+						end
+					end
+			    end
+		    end
+	    end
+	    if self.lastpos.x ~= nil then
+		    if minetest.registered_nodes[node.name].walkable then
+			    if not minetest.setting_getbool("creative_mode") then
+				    minetest.add_item(self.lastpos, "")
+			    end
+                if i > 126 then
+                    if minetest.get_node({x = pos.x, y = pos.y+1, z = pos.z+1}).name == "air" then
+                        minetest.set_node({x = pos.x, y = pos.y+1, z = pos.z+1}, {name="tutorial:legend_thunderadmin"})
+                    end
+                    if minetest.get_node({x = pos.x, y = pos.y+1, z = pos.z-1}).name == "air" then
+                        minetest.set_node({x = pos.x, y = pos.y+1, z = pos.z-1}, {name="tutorial:legend_thunderadmin"})
+                    end
+                    if minetest.get_node({x = pos.x+1, y = pos.y+1, z = pos.z}).name == "air" then
+                        minetest.set_node({x = pos.x+1, y = pos.y+1, z = pos.z}, {name="tutorial:legend_thunderadmin"})
+                    end
+                    if minetest.get_node({x = pos.x-1, y = pos.y+1, z = pos.z}).name == "air" then
+                        minetest.set_node({x = pos.x-1, y = pos.y+1, z = pos.z}, {name="tutorial:legend_thunderadmin"})
+                    end
+                    if minetest.get_node({x = pos.x+1, y = pos.y+1, z = pos.z+1}).name == "air" then
+                        minetest.set_node({x = pos.x+1, y = pos.y+1, z = pos.z+1}, {name="tutorial:legend_thunderadmin"})
+                    end
+                    if minetest.get_node({x = pos.x+1, y = pos.y+1, z = pos.z-1}).name == "air" then
+                        minetest.set_node({x = pos.x+1, y = pos.y+1, z = pos.z-1}, {name="tutorial:legend_thunderadmin"})
+                    end
+                    if minetest.get_node({x = pos.x-1, y = pos.y+1, z = pos.z+1}).name == "air" then
+                        minetest.set_node({x = pos.x-1, y = pos.y+1, z = pos.z+1}, {name="tutorial:legend_thunderadmin"})
+                    end
+                    if minetest.get_node({x = pos.x-1, y = pos.y+1, z = pos.z-1}).name == "air" then
+                        minetest.set_node({x = pos.x-1, y = pos.y+1, z = pos.z-1}, {name="tutorial:legend_thunderadmin"})
+                    end
+                    if minetest.get_node({x = pos.x, y = pos.y+1, z = pos.z}).name == "air" then
+                        minetest.set_node({x = pos.x, y = pos.y+1, z = pos.z}, {name="tutorial:legend_thunderadmin"})
+                    end
+			        minetest.sound_play("default_dig_cracky", {pos = self.lastpos, gain = 0.8})
+                elseif i >= 124 and i ~= 126 then
+                    if minetest.get_node({x = pos.x, y = pos.y+1, z = pos.z+1}).name == "air" then
+                        minetest.set_node({x = pos.x, y = pos.y+1, z = pos.z+1}, {name="tutorial:legend_thunder"})
+                    end
+                    if minetest.get_node({x = pos.x, y = pos.y+1, z = pos.z-1}).name == "air" then
+                        minetest.set_node({x = pos.x, y = pos.y+1, z = pos.z-1}, {name="tutorial:legend_thunder"})
+                    end
+                    if minetest.get_node({x = pos.x+1, y = pos.y+1, z = pos.z}).name == "air" then
+                        minetest.set_node({x = pos.x+1, y = pos.y+1, z = pos.z}, {name="tutorial:legend_thunder"})
+                    end
+                    if minetest.get_node({x = pos.x-1, y = pos.y+1, z = pos.z}).name == "air" then
+                        minetest.set_node({x = pos.x-1, y = pos.y+1, z = pos.z}, {name="tutorial:legend_thunder"})
+                    end
+                    if minetest.get_node({x = pos.x+1, y = pos.y+1, z = pos.z+1}).name == "air" then
+                        minetest.set_node({x = pos.x+1, y = pos.y+1, z = pos.z+1}, {name="tutorial:legend_thunder"})
+                    end
+                    if minetest.get_node({x = pos.x+1, y = pos.y+1, z = pos.z-1}).name == "air" then
+                        minetest.set_node({x = pos.x+1, y = pos.y+1, z = pos.z-1}, {name="tutorial:legend_thunder"})
+                    end
+                    if minetest.get_node({x = pos.x-1, y = pos.y+1, z = pos.z+1}).name == "air" then
+                        minetest.set_node({x = pos.x-1, y = pos.y+1, z = pos.z+1}, {name="tutorial:legend_thunder"})
+                    end
+                    if minetest.get_node({x = pos.x-1, y = pos.y+1, z = pos.z-1}).name == "air" then
+                        minetest.set_node({x = pos.x-1, y = pos.y+1, z = pos.z-1}, {name="tutorial:legend_thunder"})
+                    end
+                    if minetest.get_node({x = pos.x, y = pos.y+1, z = pos.z}).name == "air" then
+                        minetest.set_node({x = pos.x, y = pos.y+1, z = pos.z}, {name="tutorial:legend_thunder"})
+                    end
+			        minetest.sound_play("default_dig_cracky", {pos = self.lastpos, gain = 0.8})
+                end
+			    self.object:remove()
+		    end
+	    end
+	    self.lastpos= {x = pos.x, y = pos.y, z = pos.z}
+    end
+    minetest.register_entity("tutorial:tb2_"..i, XTRAORES_TB2)
+end
 
 minetest.register_tool("tutorial:regnumgun1", {
-	description = "Regnumgun Mode 1. Add no thunder\nGun-lv.MAX",
+	description = "Regnumgun Mode 1 (damage to players and no thunder)\nGun-lv.MAX",
 	inventory_image = "tutorial_regnumgun.png^technic_tool_mode1.png",
     wield_image = "tutorial_regnumgun.png",
 	on_use = function(itemstack, user, pointed_thing)
@@ -4050,10 +4217,17 @@ minetest.register_tool("tutorial:regnumgun1", {
 		end
 		return itemstack
 	end,
+	on_secondary_use = function(itemstack, user, pointed_thing)
+        local keys = user:get_player_control()
+        if keys["sneak"] == true then
+            itemstack:set_name("tutorial:regnumgun3")
+        end
+        return itemstack
+    end,
 })
 minetest.register_tool("tutorial:regnumgun2", {
-	description = "Regnumgun Mode 2. Add thunder\nGun-lv.MAX",
-	inventory_image = "tutorial_regnumgun.png^technic_tool_mode2.png",
+	description = "Regnumgun Mode 3 (damage to players and thunder)\nGun-lv.MAX",
+	inventory_image = "tutorial_regnumgun.png^technic_tool_mode3.png",
     wield_image = "tutorial_regnumgun.png",
 	groups = {not_in_creative_inventory=1},
 	on_use = function(itemstack, user, pointed_thing)
@@ -4077,9 +4251,53 @@ minetest.register_tool("tutorial:regnumgun2", {
 		end
 		return itemstack
 	end,
+	on_secondary_use = function(itemstack, user, pointed_thing)
+        local keys = user:get_player_control()
+        if keys["sneak"] == true then
+            itemstack:set_name("tutorial:regnumgun1")
+        end
+        return itemstack
+    end,
 })
+
+minetest.register_tool("tutorial:regnumgun3", {
+	description = "Regnumgun Mode 2 (no damage to players and no thunder)\nGun-lv.MAX",
+	inventory_image = "tutorial_regnumgun.png^technic_tool_mode2.png",
+    wield_image = "tutorial_regnumgun.png",
+	groups = {not_in_creative_inventory=1},
+	on_use = function(itemstack, user, pointed_thing)
+		local inv = user:get_inventory()
+		local pos = user:getpos()
+		local dir = user:get_look_dir()
+		local yaw = user:get_look_yaw()
+		if pos and dir and yaw then
+			pos.y = pos.y + 1.6
+			local obj = minetest.add_entity(pos, "tutorial:tb2_123")
+			if obj then
+				minetest.sound_play("shot", {object=obj})
+				obj:setvelocity({x=dir.x * 60, y=dir.y * 60, z=dir.z * 60})
+				obj:setacceleration({x=dir.x * -0, y=-0, z=dir.z * -0})
+				obj:setyaw(yaw + math.pi)
+				local ent = obj:get_luaentity()
+				if ent then
+					ent.player = user
+				end
+			end
+		end
+		return itemstack
+	end,
+	on_secondary_use = function(itemstack, user, pointed_thing)
+        local keys = user:get_player_control()
+        if keys["sneak"] == true then
+            itemstack:set_name("tutorial:regnumgun2")
+        end
+        return itemstack
+    end,
+})
+
+
 minetest.register_tool("tutorial:gun_admin1", {
-	description = "Admin tool 11: Gun Mode 1. Add no thunder",
+	description = "Admin tool 11: Gun Mode 1 (damage to players and no thunder)",
 	inventory_image = "tutorial_admingun.png^technic_tool_mode1.png",
     wield_image = "tutorial_admingun.png",
 	on_use = function(itemstack, user, pointed_thing)
@@ -4103,10 +4321,17 @@ minetest.register_tool("tutorial:gun_admin1", {
 		end
 		return itemstack
 	end,
+	on_secondary_use = function(itemstack, user, pointed_thing)
+        local keys = user:get_player_control()
+        if keys["sneak"] == true then
+            itemstack:set_name("tutorial:gun_admin3")
+        end
+        return itemstack
+    end,
 })
 minetest.register_tool("tutorial:gun_admin2", {
-	description = "Admin tool 11: Gun Mode 2. Add thunder",
-	inventory_image = "tutorial_admingun.png^technic_tool_mode2.png",
+	description = "Admin tool 11: Gun Mode 3 (damage to players and thunder)",
+	inventory_image = "tutorial_admingun.png^technic_tool_mode3.png",
     wield_image = "tutorial_admingun.png",
 	groups = {not_in_creative_inventory=1},
 	on_use = function(itemstack, user, pointed_thing)
@@ -4130,7 +4355,50 @@ minetest.register_tool("tutorial:gun_admin2", {
 		end
 		return itemstack
 	end,
+	on_secondary_use = function(itemstack, user, pointed_thing)
+        local keys = user:get_player_control()
+        if keys["sneak"] == true then
+            itemstack:set_name("tutorial:gun_admin1")
+        end
+        return itemstack
+    end,
 })
+
+minetest.register_tool("tutorial:gun_admin3", {
+	description = "Admin tool 11: Gun Mode 2 (no damage to players and no thunder)",
+	inventory_image = "tutorial_admingun.png^technic_tool_mode2.png",
+    wield_image = "tutorial_admingun.png",
+	groups = {not_in_creative_inventory=1},
+	on_use = function(itemstack, user, pointed_thing)
+		local inv = user:get_inventory()
+		local pos = user:getpos()
+		local dir = user:get_look_dir()
+		local yaw = user:get_look_yaw()
+		if pos and dir and yaw then
+			pos.y = pos.y + 1.6
+			local obj = minetest.add_entity(pos, "tutorial:tb2_126")
+			if obj then
+				minetest.sound_play("shot", {object=obj})
+				obj:setvelocity({x=dir.x * 60, y=dir.y * 60, z=dir.z * 60})
+				obj:setacceleration({x=dir.x * -0, y=-0, z=dir.z * -0})
+				obj:setyaw(yaw + math.pi)
+				local ent = obj:get_luaentity()
+				if ent then
+					ent.player = user
+				end
+			end
+		end
+		return itemstack
+	end,
+	on_secondary_use = function(itemstack, user, pointed_thing)
+        local keys = user:get_player_control()
+        if keys["sneak"] == true then
+            itemstack:set_name("tutorial:gun_admin2")
+        end
+        return itemstack
+    end,
+})
+
 local recraft = {}
 recraft.get_formspec = function(player,pos)
 	if player == nil then
@@ -4266,8 +4534,8 @@ recraft.get_formspec = function(player,pos)
     local re = player_inv:get_stack("recr", 1):get_count()
     player_inv:set_size("recr2", 1)
     local re2 = player_inv:get_stack("recr2", 1):get_count()
-	if re2 == 1 and re > 45 then
-		re = 45
+	if re2 == 1 and re > 49 then
+		re = 49
 		player_inv:set_stack("recr", 1, "default:dirt 45")
 	end
 	formspec = "size[16,12.5]"
@@ -4444,12 +4712,12 @@ recraft.get_formspec = function(player,pos)
 		.."button[10,7;1,1;recraftaw;43]"
 		.."button[11,7;1,1;recraftax;44]"
 		.."button[12,7;1,1;recraftay;45]"
+		.."button[13,7;1,1;recraftba;46]"
+		.."button[14,7;1,1;recraftbb;47]"
+		.."button[15,7;1,1;recraftbc;48]"
+		.."button[0,8;1,1;recraftbd;49]"
 		if re2 < 1 then
 			formspec = formspec
-			.."button[13,7;1,1;recraftba;46]"
-			.."button[14,7;1,1;recraftbb;47]"
-			.."button[15,7;1,1;recraftbc;48]"
-			.."button[0,8;1,1;recraftbd;49]"
 			.."button[1,8;1,1;recraftca;50]"
 			.."button[2,8;1,1;recraftcb;51]"
 			.."button[3,8;1,1;recraftda;52]"
@@ -5212,47 +5480,36 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
         player_inv:set_stack("recr", 1, "default:dirt "..123)
 		inventory_plus.set_inventory_formspec(player, recraft.get_formspec(player))
 	end
+	if fields.backward then
+		inventory_plus.set_inventory_formspec(player, backward.get_formspec(player))
+	end
+	if fields.backwardcra then  
+        local player_inv = player:get_inventory()
+        player_inv:set_size("backward", 1)
+		local name = player_inv:get_stack("backward", 1):get_name()
+		local item1 = ""
+		local item2 = ""
+		local item3 = ""
+		local item4 = ""
+		local re = false
+		if string.match(name, "tutorial:molestick") then
+			local level = string.gsub(name, "tutorial:molestick", "")
+			if tonumber(level) > 0 and tonumber(level) < 5 then
+				item1 = "tutorial:coin_bronze "..((level-1)*24+8)
+				item2 = "tutorial:cloudentverner21 "
+				re = true
+			end
+		end
+		if re == true and player_inv:room_for_item("main", item1) and player_inv:room_for_item("main", item2) and player_inv:room_for_item("main", item3) and player_inv:room_for_item("main", item4) then
+			player_inv:remove_item("backward", name)
+			player_inv:add_item("main", item1)
+			player_inv:add_item("main", item2)
+			player_inv:add_item("main", item3)
+			player_inv:add_item("main", item4)
+		end
+		inventory_plus.set_inventory_formspec(player, backward.get_formspec(player))
+	end
 end)
-minetest.register_craft({
-    output = 'tutorial:adminbattleaxe',
-    recipe = {
-        {'tutorial:adminbattleaxe3'},
-    }
-})
-minetest.register_tool("tutorial:adminbattleaxe3", {
-	description = "Admin tool 3: Admin battleaxe Mode 3. Only for hunting mobs",
-	inventory_image = "tutorial_adminbattleaxe.png^technic_tool_mode3.png",
-    wield_image = "tutorial_adminbattleaxe.png",
-	groups = {not_in_creative_inventory=1},
-	tool_capabilities = {
-		full_punch_interval = 2.0,
-		max_drop_level=1,
-		groupcaps={
-		},
-		damage_groups = {fleshy=4000}
-	},
-	liquids_pointable = false,
-})
-minetest.register_craft({
-    output = 'tutorial:regnumbattleaxe1',
-    recipe = {
-        {'tutorial:regnumbattleaxe3'},
-    }
-})
-minetest.register_tool("tutorial:regnumbattleaxe3", {
-	description = "Regnumbattleaxe Mode 3. Only for hunting mobs\nBattleaxe-lv.MAX",
-	inventory_image = "tutorial_regnumbattleaxe.png^technic_tool_mode3.png",
-    wield_image = "tutorial_regnumbattleaxe.png",
-	groups = {not_in_creative_inventory=1},
-	tool_capabilities = {
-		full_punch_interval = 2.0,
-		max_drop_level=1,
-		groupcaps={
-		},
-		damage_groups = {fleshy=150}
-	},
-	liquids_pointable = false,
-})
 minetest.register_craft({
     output = 'tutorial:bottleSS',
     recipe = {

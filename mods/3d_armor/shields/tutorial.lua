@@ -4,7 +4,7 @@ minetest.register_tool("shields:regnumshield", {
 	groups = {armor_shield=15.0, armor_heal=13, armor_use=0,armor_fire=1, armor_water=0.2},
 	wear = 0,
     wield_image = "shields_inv_regnumshield.png",
-    on_use = function(itemstack, user, pointed_thing)
+    on_secondary_use = function(itemstack, user, pointed_thing)
         local keys = user:get_player_control()
         if keys["sneak"] == true then
             itemstack:set_name("shields:regnumshield2")
@@ -18,7 +18,7 @@ minetest.register_tool("shields:regnumshield2", {
 	groups = {armor_shield=15.0, armor_heal=13, armor_use=0,armor_fire=1, physics_speed=0.25, armor_water=0.2, not_in_creative_inventory=1},
 	wear = 0,
     wield_image = "shields_inv_regnumshield.png",
-    on_use = function(itemstack, user, pointed_thing)
+    on_secondary_use = function(itemstack, user, pointed_thing)
         local keys = user:get_player_control()
         if keys["sneak"] == true then
             itemstack:set_name("shields:regnumshield3")
@@ -32,7 +32,7 @@ minetest.register_tool("shields:regnumshield3", {
 	groups = {armor_shield=15.0, armor_heal=13, armor_use=0,armor_fire=1, physics_jump=0.25, armor_water=0.2, not_in_creative_inventory=1},
 	wear = 0,
     wield_image = "shields_inv_regnumshield.png",
-    on_use = function(itemstack, user, pointed_thing)
+    on_secondary_use = function(itemstack, user, pointed_thing)
         local keys = user:get_player_control()
         if keys["sneak"] == true then
             itemstack:set_name("shields:regnumshield4")
@@ -46,7 +46,7 @@ minetest.register_tool("shields:regnumshield4", {
 	groups = {armor_shield=15.0, armor_heal=13, armor_use=0,armor_fire=1, physics_jump=0.25, physics_speed=0.25, armor_water=0.2, not_in_creative_inventory=1},
 	wear = 0,
     wield_image = "shields_inv_regnumshield.png",
-    on_use = function(itemstack, user, pointed_thing)
+    on_secondary_use = function(itemstack, user, pointed_thing)
         local keys = user:get_player_control()
         if keys["sneak"] == true then
             itemstack:set_name("shields:regnumshield")

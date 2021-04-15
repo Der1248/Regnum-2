@@ -15,5 +15,11 @@ minetest.register_on_joinplayer(function(player)
 		file:write("0")
 		file:close()
 	end
+	if file_check(minetest.get_worldpath().."/"..player:get_player_name().."_experience_silver") == true then
+	else
+		file = io.open(minetest.get_worldpath().."/"..player:get_player_name().."_experience_silver", "w")
+		file:write("0")
+		file:close()
+	end
 end)
-dofile(path.."/Xp1_bronze.lua")
+dofile(path.."/Xp.lua")

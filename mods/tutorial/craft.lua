@@ -54,18 +54,6 @@ minetest.register_craft({
     }
 })
 minetest.register_craft({
-    output = 'tutorial:regnumbattleaxe2',
-    recipe = {
-        {'tutorial:regnumbattleaxe1'},
-    }
-})
-minetest.register_craft({
-    output = 'tutorial:regnumbattleaxe3',
-    recipe = {
-        {'tutorial:regnumbattleaxe2'},
-    }
-})
-minetest.register_craft({
     output = 'tutorial:lilabattleaxe2',
     recipe = {
         {'tutorial:lila_erz3', 'tutorial:lila_erz3', 'tutorial:lila_erz3'},
@@ -157,18 +145,6 @@ minetest.register_craft({
     output = 'tutorial:geschenk_silber',
     recipe = {
         {'tutorial:geschenk', 'tutorial:geschenk'},
-    }
-})
-minetest.register_craft({
-    output = 'tutorial:adminbattleaxe2',
-    recipe = {
-        {'tutorial:adminbattleaxe'},
-    }
-})
-minetest.register_craft({
-    output = 'tutorial:adminbattleaxe3',
-    recipe = {
-        {'tutorial:adminbattleaxe2'},
     }
 })
 minetest.register_craft({
