@@ -5,9 +5,10 @@ ach3.get_formspec = function(player, pos)
         return
     end
 	local player_inv = player:get_inventory()
-    player_inv:set_size("year", 2)
+    player_inv:set_size("year", 3)
 	local year = player_inv:get_stack("year", 1):get_count()
 	local year2 = player_inv:get_stack("year", 2):get_count()
+	local year3 = player_inv:get_stack("year", 3):get_count()
     local d = 0
     if year == 1 then
         d = d+1
@@ -23,9 +24,11 @@ ach3.get_formspec = function(player, pos)
 		.."button[2,0;2,0.5;main;Main]"
         .."label[0.8,1.1;One year Trophy]"
 		.."label[0.8,1.9;Two years Trophy]"
-        .."label[5.5,0;"..d.."/2]"
+		.."label[0.8,2.7;Three years Trophy]"
+        .."label[5.5,0;"..d.."/3]"
         .."image[0,1;0.8,0.8;tutorial_"..year..".png]"
 		.."image[0,1.8;0.8,0.8;tutorial_"..year2..".png]"
+		.."image[0,2.6;0.8,0.8;tutorial_"..year3..".png]"
 	return formspec
 end
 minetest.register_on_joinplayer(function(player)
@@ -41,12 +44,15 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
     end
 	if fields.achc then
         local player_inv = player:get_inventory()
-        player_inv:set_size("year", 2)
+        player_inv:set_size("year", 3)
         if player:get_inventory():contains_item("main", "tutorial:trophy_year1") then
             player_inv:set_stack("year", 1,"tutorial:dirt")
 		end
 		if player:get_inventory():contains_item("main", "tutorial:trophy_year2") then
             player_inv:set_stack("year", 2,"tutorial:dirt")
+		end
+		if player:get_inventory():contains_item("main", "tutorial:trophy_year3") then
+            player_inv:set_stack("year", 3,"tutorial:dirt")
 		end
 		inventory_plus.set_inventory_formspec(player, ach3.get_formspec(player))
 	end
