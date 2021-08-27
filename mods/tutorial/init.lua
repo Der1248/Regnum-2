@@ -6,7 +6,7 @@ minetest.register_on_joinplayer(function(player)
 		offset = {x=0, y=10},
 		alignment = {x=1, y=0},
 		number = 0xFFFFFF ,
-		text = "For Minetest 	  :  5.4.0",
+		text = "For Minetest 	  :  5.4.x",
 	})
 	player:hud_add({
 		hud_elem_type = "text",
@@ -14,7 +14,7 @@ minetest.register_on_joinplayer(function(player)
 		offset = {x=0, y=30},
 		alignment = {x=1, y=0},
 		number = 0xFFFFFF ,
-		text = "Game Version	 :  1.3.4",
+		text = "Game Version	 :  1.3.5",
 	})
 end)
 
@@ -52,6 +52,24 @@ backward.get_formspec = function(player, pos)
 		.."label[5,1.0;Molestick lv.1-4]"
 	return formspec		
 end
+
+local S = minetest.get_translator("sfinv")
+sfinv.override_page("sfinv:crafting", {
+	title = S("Crafting"),
+	get = function(self, player, context)
+		return sfinv.make_formspec(player, context, [[
+				list[current_player;craft;1.75,0.5;3,3;]
+				list[current_player;craftpreview;5.75,1.5;1,1;]
+				image[4.75,1.5;1,1;sfinv_crafting_arrow.png]
+				listring[current_player;main]
+				listring[current_player;craft]
+				image_button[0,0;1.6,1.6;inventory_plus_inven.png;inven;]
+				label[0.3,1.5;selection]
+				button[6.6,1.4;1.5,0.5;craft10;Craft (10)]
+				button[6.6,2.2;1.5,0.5;craft99;Craft (99)]
+			]], true)
+	end
+})
 
 minetest.register_craft({
         output = "tutorial:spawn_egg",
@@ -640,8 +658,8 @@ minetest.register_globalstep(function(dtime)
 			end
 			player_inv:set_size("year", 3)
 			if player_inv:room_for_item("main", "tutorial:trophy_year3") and player_inv:get_stack("year", 3):get_count() == 0 then
-				player_inv:add_item("main", "tutorial:trophy_year3")
-				player_inv:set_stack("year", 3, "default:dirt")
+				--player_inv:add_item("main", "tutorial:trophy_year3")
+				--player_inv:set_stack("year", 3, "default:dirt")
 			end
 			local stack = player:get_inventory():get_stack("heart", 1)
 			player:set_attribute("hpnum", player:get_hp())
