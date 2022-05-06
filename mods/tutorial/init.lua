@@ -6,7 +6,7 @@ minetest.register_on_joinplayer(function(player)
 		offset = {x=0, y=10},
 		alignment = {x=1, y=0},
 		number = 0xFFFFFF ,
-		text = "For Minetest 	  :  5.4.x",
+		text = "For Minetest 	  :  5.5.0",
 	})
 	player:hud_add({
 		hud_elem_type = "text",
@@ -14,7 +14,7 @@ minetest.register_on_joinplayer(function(player)
 		offset = {x=0, y=30},
 		alignment = {x=1, y=0},
 		number = 0xFFFFFF ,
-		text = "Game Version	 :  1.3.5",
+		text = "Game Version	 :  1.3.6",
 	})
 end)
 
@@ -91,6 +91,39 @@ minetest.register_craftitem("tutorial:spawn_egg", {
 			return itemstack
 		end
 	end,
+})
+
+minetest.register_node("tutorial:trophy_year4", {
+    description = "Four years Regnum 2!!",
+	tiles = {
+		"tutorial_trophy_year4.png"
+	},
+    groups = { snappy=3 },
+    drawtype = "nodebox",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.125, -0.5, -0.125, 0.1875, -0.4375, 0.1875}, -- NodeBox1
+			{-0.0625, -0.4375, -0.0625, 0.125, -0.375, 0.125}, -- NodeBox2
+			{-0.02, -0.375, -0.02, 0.0825, -0.1875, 0.0825}, -- NodeBox3
+			{-0.0625, -0.1875, -0.0625, 0.125, -0.125, 0.125}, -- NodeBox4
+			{-0.125, -0.1875, -0.0625, -0.0625, 0.125, 0.125}, -- NodeBox5
+			{0.125, -0.1875, -0.0625, 0.1875, 0.125, 0.125}, -- NodeBox6
+			{-0.125, -0.1875, 0.125, 0.1875, 0.125, 0.1875}, -- NodeBox7
+			{-0.125, -0.1875, -0.125, 0.1875, 0.125, -0.0625}, -- NodeBox8
+			{-0.0625, -0.25, -0.0625, 0.125, -0.1875, 0.125}, -- NodeBox9
+			{0.1875, 0.05, 0, 0.23, 0.0925, 0.0625}, -- NodeBox10
+			{0.1875, -0.15, 0, 0.23, -0.11, 0.0625}, -- NodeBox11
+			{0.23, -0.15, 0, 0.2725, 0.0925, 0.0625}, -- NodeBox12
+			{-0.1675, -0.15, 0, -0.125, -0.11, 0.0625}, -- NodeBox13
+			{-0.1675, 0.05, 0, -0.125, 0.0925, 0.0625}, -- NodeBox14
+			{-0.21, -0.15, 0, -0.1675, 0.0925, 0.0625}, -- NodeBox15
+		}
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = { -0.21, -0.5, -0.125, 0.2725, 0.125, 0.1875 }
+	}
 })
 
 minetest.register_node("tutorial:trophy_year3", {
@@ -656,10 +689,10 @@ minetest.register_globalstep(function(dtime)
 					player:set_nametag_attributes({color = {a = 255, r = 255, g = 0, b = 0}, text = "[Youtuber][Enemy]"..player:get_player_name()})
 				end
 			end
-			player_inv:set_size("year", 3)
-			if player_inv:room_for_item("main", "tutorial:trophy_year3") and player_inv:get_stack("year", 3):get_count() == 0 then
-				--player_inv:add_item("main", "tutorial:trophy_year3")
-				--player_inv:set_stack("year", 3, "default:dirt")
+			player_inv:set_size("year", 4)
+			if player_inv:room_for_item("main", "tutorial:trophy_year4") and player_inv:get_stack("year", 4):get_count() == 0 then
+				player_inv:add_item("main", "tutorial:trophy_year4")
+				player_inv:set_stack("year", 4, "default:dirt")
 			end
 			local stack = player:get_inventory():get_stack("heart", 1)
 			player:set_attribute("hpnum", player:get_hp())
