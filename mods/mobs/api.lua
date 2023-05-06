@@ -1881,15 +1881,16 @@ function mob_class:follow_flop()
 
 		local s = self.object:get_pos()
 		local players = minetest.get_connected_players()
+		if s then
+			for n = 1, #players do
 
-		for n = 1, #players do
+				if get_distance(players[n]:get_pos(), s) < self.view_range
+				and not mobs.invis[ players[n]:get_player_name() ] then
 
-			if get_distance(players[n]:get_pos(), s) < self.view_range
-			and not mobs.invis[ players[n]:get_player_name() ] then
+					self.following = players[n]
 
-				self.following = players[n]
-
-				break
+					break
+				end
 			end
 		end
 	end

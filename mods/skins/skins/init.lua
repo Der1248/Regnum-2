@@ -100,15 +100,15 @@ skins.formspec.main = function(name)
 			formspec = formspec .."button[0,6.5;1.5,1;skins_set_"..i..";Nightmare]"
         elseif skin == "character_175" or skin == "character_176" or skin == "character_177" or skin == "character_178" or skin == "character_179" then
 			if player:get_inventory():get_stack("knightskin",1):get_count() == 0 then
-                formspec = formspec .."button[6,6.5;2,1;skins_set_175;Knight (red)]"
+                formspec = formspec .."button[6,6.5;2,1;skins_set_125;Knight (red)]"
             elseif player:get_inventory():get_stack("knightskin",1):get_count() == 1 then
-                formspec = formspec .."button[6,6.5;2,1;skins_set_176;Knight (blue)]"
+                formspec = formspec .."button[6,6.5;2,1;skins_set_126;Knight (blue)]"
             elseif player:get_inventory():get_stack("knightskin",1):get_count() == 2 then
-                formspec = formspec .."button[6,6.5;2,1;skins_set_177;Knight (green)]"
+                formspec = formspec .."button[6,6.5;2,1;skins_set_127;Knight (green)]"
             elseif player:get_inventory():get_stack("knightskin",1):get_count() == 3 then
-                formspec = formspec .."button[6,6.5;2,1;skins_set_178;Knight (pink)]"
+                formspec = formspec .."button[6,6.5;2,1;skins_set_128;Knight (pink)]"
             elseif player:get_inventory():get_stack("knightskin",1):get_count() == 4 then
-                formspec = formspec .."button[6,6.5;2,1;skins_set_179;Knight (purple)]"
+                formspec = formspec .."button[6,6.5;2,1;skins_set_129;Knight (purple)]"
             end
 		else
 		    if skip < page*8 then skip = skip + 1 else
@@ -153,7 +153,7 @@ minetest.register_on_player_receive_fields(function(player,formname,fields)
 	if fields.skins then
 		inventory_plus.set_inventory_formspec(player,skins.formspec.main(player:get_player_name()))
 	end
-    if fields.skins_set_175 then
+    if fields.skins_set_125 then
 		if player == nil then
             return
         end
@@ -161,7 +161,7 @@ minetest.register_on_player_receive_fields(function(player,formname,fields)
         player_inv:set_size("knightskin", 1)
         local artrew = player_inv:set_stack("knightskin", 1, "default:dirt")
 	end
-    if fields.skins_set_176 then
+    if fields.skins_set_126 then
 		if player == nil then
             return
         end
@@ -169,7 +169,7 @@ minetest.register_on_player_receive_fields(function(player,formname,fields)
         player_inv:set_size("knightskin", 1)
         local artrew = player_inv:set_stack("knightskin", 1, "default:dirt 2")
 	end
-    if fields.skins_set_177 then
+    if fields.skins_set_127 then
 		if player == nil then
             return
         end
@@ -177,7 +177,7 @@ minetest.register_on_player_receive_fields(function(player,formname,fields)
         player_inv:set_size("knightskin", 1)
         local artrew = player_inv:set_stack("knightskin", 1, "default:dirt 3")
 	end
-    if fields.skins_set_178 then
+    if fields.skins_set_128 then
 		if player == nil then
             return
         end
@@ -185,7 +185,7 @@ minetest.register_on_player_receive_fields(function(player,formname,fields)
         player_inv:set_size("knightskin", 1)
         local artrew = player_inv:set_stack("knightskin", 1, "default:dirt 4")
 	end
-    if fields.skins_set_179 then
+    if fields.skins_set_129 then
 		if player == nil then
             return
         end
